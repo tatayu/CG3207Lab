@@ -1,0 +1,334 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         ;-------------------------------------------------------
+                       ---------------------------
+    2 00000000         ;-- License terms :
+    3 00000000         ;-- You are free to use this code as long as you
+    4 00000000         ;--  (i) DO NOT post it on any public repository;
+    5 00000000         ;--  (ii) use it only for educational purposes;
+    6 00000000         ;--  (iii) accept the responsibility to ensure that your
+                        implementation does not violate any intellectual proper
+                       ty of ARM Holdings or other entities.
+    7 00000000         ;--  (iv) accept that the program is provided "as is" wi
+                       thout warranty of any kind or assurance regarding its su
+                       itability for any particular purpose;
+    8 00000000         ;--  (v) send an email to rajesh.panicker@ieee.org brief
+                       ly mentioning its use (except when used for the course C
+                       G3207 at the National University of Singapore);
+    9 00000000         ;--  (vi) retain this notice in this file or any files d
+                       erived from this.
+   10 00000000         ;-------------------------------------------------------
+                       ---------------------------
+   11 00000000         
+   12 00000000                 AREA             MYCODE, CODE, READONLY, ALIGN=9
+   13 00000000                 ENTRY
+   14 00000000         
+   15 00000000         ; ------- <code memory (ROM mapped to Instruction Memory
+                       ) begins>
+   16 00000000         ; Total number of instructions should not exceed 127 (12
+                       6 excluding the last line 'halt B halt').
+   17 00000000         STEP3
+   18 00000000 E51F1008        LDR              R1, LEDS    ; Load the address 
+                                                            of LEDS to R1
+   19 00000004 E51F2008        LDR              R2, DIPS    ; Load the address 
+                                                            of DIPS to R2
+   20 00000008         
+   21 00000008 E51F3008        LDR              R3, DELAY_VAL ; Load the value 
+                                                            delay value to R3
+   22 0000000C E5924000        LDR              R4, [R2]    ; Load the value st
+                                                            ored in address R2
+   23 00000010 E5814000        STR              R4, [R1]    ; Store R4 content 
+                                                            into location point
+                                                            ed by R1
+   24 00000014         
+   25 00000014         LOOP
+   26 00000014 E2533001        SUBS             R3, R3, #1  ; Decrease the dela
+                                                            y counter by 1.
+   27 00000018 1AFFFFFD        BNE              LOOP        ; loops 4 times as 
+                                                            R3 = 4.
+   28 0000001C         
+   29 0000001C E3530000        CMP              R3, #0      ; Compare R3 value 
+                                                            with 0.
+   30 00000020 0AFFFFF6        BEQ              STEP3       ;  If R3 value is 0
+                                                            , go back to STEP3.
+                                                            
+   31 00000024         
+   32 00000024         ; instead of the pseudo-instruction LDR  R2, =variable1,
+                        use LDR R2, variable1_addr and variable1_addr DCD varia
+                       ble1
+   33 00000024 E5820000        STR              R0, [R2]    ; store using addre
+                                                            ss of variable 1 as
+                                                             a pointer. *R2 = R
+
+
+
+ARM Macro Assembler    Page 2 
+
+
+                                                            0;
+   34 00000028 E5820004        STR              R0, [R2,#4] ; *(R2+4) = R0;
+   35 0000002C         halt
+   36 0000002C EAFFFFFE        B                halt        ; infinite loop to 
+                                                            halt computation. /
+                                                            / A program should 
+                                                            not "terminate" wit
+                                                            hout an operating s
+                                                            ystem to return con
+                                                            trol to
+   37 00000030         ; keep halt B halt as the last line of your code.
+   38 00000030         ; ------- <\code memory (ROM mapped to Instruction Memor
+                       y) ends>
+   39 00000030         
+   40 00000030         
+   41 00000030                 AREA             CONSTANTS, DATA, READONLY, ALIG
+N=9
+   42 00000000         ; ------- <constant memory (ROM mapped to Data Memory) b
+                       egins>
+   43 00000000         ; All constants should be declared in this section. This
+                        section is read only (Only LDR, no STR).
+   44 00000000         ; Total number of constants should not exceed 128 (124 e
+                       xcluding the 4 used for peripheral pointers).
+   45 00000000         ; If a variable is accessed multiple times, it is better
+                        to store the address in a register and use it rather th
+                       an load it repeatedly.
+   46 00000000         
+   47 00000000         ;Peripheral pointers
+   48 00000000         LEDS
+   49 00000000 00000C00        DCD              0x00000C00  ; Address of LEDs. 
+                                                            //volatile unsigned
+                                                             int * const LEDS =
+                                                             (unsigned int*)0x0
+                                                            0000C00;  
+   50 00000004         DIPS
+   51 00000004 00000C04        DCD              0x00000C04  ; Address of DIP sw
+                                                            itches. //volatile 
+                                                            unsigned int * cons
+                                                            t DIPS = (unsigned 
+                                                            int*)0x00000C04;
+   52 00000008         PBS
+   53 00000008 00000C08        DCD              0x00000C08  ; Address of Push B
+                                                            uttons. Used only i
+                                                            n Lab 2
+   54 0000000C         UART
+   55 0000000C 00000C0C        DCD              0x00000C0C  ; Address of UART. 
+                                                            Used only in Lab 2
+   56 00000010         
+   57 00000010         ; Rest of the constants should be declared below.
+   58 00000010         DELAY_VAL
+   59 00000010 00000006        DCD              0x6         ; The number of ste
+                                                            ps of delay // cons
+                                                            t unsigned int DELA
+                                                            Y_VAL = 4;
+   60 00000014         variable1_addr
+   61 00000014 00000000        DCD              variable1   ; address of variab
+                                                            le1. Required since
+                                                             we are avoiding ps
+                                                            eudo-instructions /
+
+
+
+ARM Macro Assembler    Page 3 
+
+
+                                                            / unsigned int * co
+                                                            nst variable1_addr 
+                                                            = &variable1;
+   62 00000018         constant1
+   63 00000018 ABCD1234        DCD              0xABCD1234  ; // const unsigned
+                                                             int constant1 = 0x
+                                                            ABCD1234;
+   64 0000001C         string1
+   65 0000001C 48 65 6C 
+              6C 6F 20 
+              57 6F 72 
+              6C 64 21 
+              21 21 21 
+              00               DCB              "Hello World!!!!",0 ; // unsign
+                                                            ed char string1[] =
+                                                             "Hello World!"; //
+                                                             assembler will iss
+                                                            ue a warning if the
+                                                             string size is not
+                                                             a multiple of 4, b
+                                                            ut the warning is s
+                                                            afe to ignore
+   66 0000002C         
+   67 0000002C         ; ------- <constant memory (ROM mapped to Data Memory) e
+                       nds> 
+   68 0000002C         
+   69 0000002C         
+   70 0000002C                 AREA             VARIABLES, DATA, READWRITE, ALI
+GN=9
+   71 00000000         ; ------- <variable memory (RAM mapped to Data Memory) b
+                       egins>
+   72 00000000         ; All variables should be declared in this section. This
+                        section is read-write.
+   73 00000000         ; Total number of variables should not exceed 128. 
+   74 00000000         ; No initialization possible in this region. In other wo
+                       rds, you should write to a location before you can read 
+                       from it (i.e., write to a location using STR before read
+                       ing using LDR).
+   75 00000000         
+   76 00000000         variable1
+   77 00000000 00000000        DCD              0x00000000  ;  // unsigned int 
+                                                            variable1;
+   78 00000004         ; ------- <variable memory (RAM mapped to Data Memory) e
+                       nds> 
+   79 00000004         
+   80 00000004                 END
+Command Line: --debug --xref --apcs=interwork --depend=.\Sample_ASM_Keil_ARM7.d
+ -o.\Sample_ASM_Keil_ARM7.o -IC:\Keil\ARM\RV31\INC -IC:\Keil\ARM\CMSIS\Include 
+--predefine="__EVAL SETA 1" --list=.\Sample_ASM_Keil_ARM7.lst C:\Users\kateq\Do
+wnloads\Sample_ASM_Keil_ARM7.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+LOOP 00000014
+
+Symbol: LOOP
+   Definitions
+      At line 25 in file C:\Users\kateq\Downloads\Sample_ASM_Keil_ARM7.s
+   Uses
+      At line 27 in file C:\Users\kateq\Downloads\Sample_ASM_Keil_ARM7.s
+Comment: LOOP used once
+MYCODE 00000000
+
+Symbol: MYCODE
+   Definitions
+      At line 12 in file C:\Users\kateq\Downloads\Sample_ASM_Keil_ARM7.s
+   Uses
+      None
+Comment: MYCODE unused
+STEP3 00000000
+
+Symbol: STEP3
+   Definitions
+      At line 17 in file C:\Users\kateq\Downloads\Sample_ASM_Keil_ARM7.s
+   Uses
+      At line 30 in file C:\Users\kateq\Downloads\Sample_ASM_Keil_ARM7.s
+Comment: STEP3 used once
+halt 0000002C
+
+Symbol: halt
+   Definitions
+      At line 35 in file C:\Users\kateq\Downloads\Sample_ASM_Keil_ARM7.s
+   Uses
+      At line 36 in file C:\Users\kateq\Downloads\Sample_ASM_Keil_ARM7.s
+Comment: halt used once
+4 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+CONSTANTS 00000000
+
+Symbol: CONSTANTS
+   Definitions
+      At line 41 in file C:\Users\kateq\Downloads\Sample_ASM_Keil_ARM7.s
+   Uses
+      None
+Comment: CONSTANTS unused
+DELAY_VAL 00000010
+
+Symbol: DELAY_VAL
+   Definitions
+      At line 58 in file C:\Users\kateq\Downloads\Sample_ASM_Keil_ARM7.s
+   Uses
+      At line 21 in file C:\Users\kateq\Downloads\Sample_ASM_Keil_ARM7.s
+Comment: DELAY_VAL used once
+DIPS 00000004
+
+Symbol: DIPS
+   Definitions
+      At line 50 in file C:\Users\kateq\Downloads\Sample_ASM_Keil_ARM7.s
+   Uses
+      At line 19 in file C:\Users\kateq\Downloads\Sample_ASM_Keil_ARM7.s
+Comment: DIPS used once
+LEDS 00000000
+
+Symbol: LEDS
+   Definitions
+      At line 48 in file C:\Users\kateq\Downloads\Sample_ASM_Keil_ARM7.s
+   Uses
+      At line 18 in file C:\Users\kateq\Downloads\Sample_ASM_Keil_ARM7.s
+Comment: LEDS used once
+PBS 00000008
+
+Symbol: PBS
+   Definitions
+      At line 52 in file C:\Users\kateq\Downloads\Sample_ASM_Keil_ARM7.s
+   Uses
+      None
+Comment: PBS unused
+UART 0000000C
+
+Symbol: UART
+   Definitions
+      At line 54 in file C:\Users\kateq\Downloads\Sample_ASM_Keil_ARM7.s
+   Uses
+      None
+Comment: UART unused
+constant1 00000018
+
+Symbol: constant1
+   Definitions
+      At line 62 in file C:\Users\kateq\Downloads\Sample_ASM_Keil_ARM7.s
+   Uses
+      None
+Comment: constant1 unused
+string1 0000001C
+
+Symbol: string1
+
+
+
+ARM Macro Assembler    Page 2 Alphabetic symbol ordering
+Relocatable symbols
+
+   Definitions
+      At line 64 in file C:\Users\kateq\Downloads\Sample_ASM_Keil_ARM7.s
+   Uses
+      None
+Comment: string1 unused
+variable1_addr 00000014
+
+Symbol: variable1_addr
+   Definitions
+      At line 60 in file C:\Users\kateq\Downloads\Sample_ASM_Keil_ARM7.s
+   Uses
+      None
+Comment: variable1_addr unused
+9 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+VARIABLES 00000000
+
+Symbol: VARIABLES
+   Definitions
+      At line 70 in file C:\Users\kateq\Downloads\Sample_ASM_Keil_ARM7.s
+   Uses
+      None
+Comment: VARIABLES unused
+variable1 00000000
+
+Symbol: variable1
+   Definitions
+      At line 76 in file C:\Users\kateq\Downloads\Sample_ASM_Keil_ARM7.s
+   Uses
+      At line 61 in file C:\Users\kateq\Downloads\Sample_ASM_Keil_ARM7.s
+Comment: variable1 used once
+2 symbols
+346 symbols in table
