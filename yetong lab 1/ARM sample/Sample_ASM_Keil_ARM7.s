@@ -33,14 +33,16 @@
 		LDR R2, DIPS
 		;MOV R5, #0x10
 		;STR R5, [R2]
+loop:
 		LDR R3, DELAY_VAL
-delay_loop		
 		LDR R4, [R2]
 		STR R4, [R1]
+delay_loop
 		SUBS R3, R3, #0x1
 		BNE delay_loop
 		
-		
+		CMP R3 #0
+		BEQ loop
 		
 halt	
 		B    halt           ; infinite loop to halt computation. // A program should not "terminate" without an operating system to return control to
