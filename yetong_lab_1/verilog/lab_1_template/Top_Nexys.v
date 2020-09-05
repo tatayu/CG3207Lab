@@ -11,7 +11,7 @@ module Top(
     input clk,  			// fundamental clock 1MHz
     input btnU, 			// button BTNU for 4Hz speed
     input btnC, 			// button BTNC for pause
-    output [15:0]led,   	// 16 LEDs to display upper or lower 16 bits of memory data
+    output reg [15:0]led,   	// 16 LEDs to display upper or lower 16 bits of memory data
     output dp,  			// dot point of 7-segments, can be deleted if 7-segments are not implemented
     output [7:0]anode, 		// anodes of 7-segments, can be deleted if 7-segments are not implemented
     output [6:0]cathode  	// cathodes of 7-segments, can be deleted if 7-segments are not implemented
@@ -19,7 +19,7 @@ module Top(
 
 wire enable; 			// enable signal to read the next memory content
 wire upper_lower;   	// 1-bit signal used between modules to indicate either upper or lower 16-bit contents is displaying on LEDs, 
-						// upper_lower = 1 to display upper half of the Memory data
+						// upper_lower = 0 to display upper half of the Memory data
 wire [31:0] data;   // entire 32-bit contents displaying on LEDs and 7-segments, can be deleted if 7-segments are not implemented
     
 // Choose 1hz or 4hz display frequency based on BTNU and BTNC readings, using given module Clock_Enable.v
@@ -37,8 +37,10 @@ Get_MEM(clk, enable, data, upper_lower);
 
 // split the 32-bit Memory data using a multiplexer to display on led 
 
-    assign led[15:0] = upper_lower == 1'b0 ? data[31:16] : data[15:0];
-
+    always @(posedge clk)
+    begin
+    led <= upper_lower == 1'b0 ? data[31:16] : data[15:0]; //upper_lower = 0 will display upper half
+    end
 
 
 endmodule

@@ -67,30 +67,16 @@ always @(posedge clk)
 begin
     if(enable == 1)
     begin
-        if(addr[8] == 1'b0 && addr[0] == 1'b0) //get instruction memory
+        if(addr[8] == 1'b0) //get instruction memory
         begin
             data <= INSTR_MEM[addr[7:1]];
-            
-////            //if(addr[7:1] == 7'b1111111)
-////            //begin
-////                //addr[7:1] <= 7'b0000000;
-////                //addr[8] <= 1'b1;
-////            //end      
         end
-        else if(addr[8] == 1'b1 && addr[0] == 1'b0)//get data constant memory
+        else //get data constant memory
         begin
             data <= DATA_CONST_MEM[addr[7:1]];
-            
-//           // if(addr[7:1] == 7'b1111111)
-//           // begin
-//                //addr[7:1] <= 7'b0000000;
-//                //addr[8] <= 1'b0;
-//           // end  
-
         end
-        
         upper_lower <= addr[0];
-        addr <= addr + 1;
+        addr <= addr + 1'b1;
     end
 end
 	
