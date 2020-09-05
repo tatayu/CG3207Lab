@@ -44,7 +44,7 @@
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
           <OutputDirectory>.\</OutputDirectory>
-          <OutputName>lab1</OutputName>
+          <OutputName>sample</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>1</CreateHexFile>
@@ -145,7 +145,7 @@
             <CpuDllArguments></CpuDllArguments>
             <PeripheralDll></PeripheralDll>
             <PeripheralDllArguments></PeripheralDllArguments>
-            <InitializationFile>..\..\Users\kateq\Downloads\MMIO.ini</InitializationFile>
+            <InitializationFile>.\MMIO.ini</InitializationFile>
           </SimDlls>
           <TargetDlls>
             <CpuDll></CpuDll>
@@ -166,7 +166,7 @@
             <DriverSelection>-1</DriverSelection>
           </Flash1>
           <Flash2></Flash2>
-          <Flash3></Flash3>
+          <Flash3>"" ()</Flash3>
           <Flash4></Flash4>
         </Utilities>
         <TargetArmAds>
@@ -394,7 +394,7 @@
             <File>
               <FileName>Sample_ASM_Keil_ARM7.s</FileName>
               <FileType>2</FileType>
-              <FilePath>C:\Users\kateq\Downloads\Sample_ASM_Keil_ARM7.s</FilePath>
+              <FilePath>.\Sample_ASM_Keil_ARM7.s</FilePath>
             </File>
           </Files>
         </Group>

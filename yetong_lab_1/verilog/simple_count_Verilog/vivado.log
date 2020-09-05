@@ -1,0 +1,22 @@
+#-----------------------------------------------------------
+# Vivado v2020.1 (64-bit)
+# SW Build 2902540 on Wed May 27 19:54:49 MDT 2020
+# IP Build 2902112 on Wed May 27 22:43:36 MDT 2020
+# Start of session at: Sat Sep  5 12:06:30 2020
+# Process ID: 1376
+# Current directory: F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/simple_count_Verilog
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent16140 F:\Notes\CG3207\project\CG3207Lab\yetong_lab_1\verilog\simple_count_Verilog\simple_count_Verilog.xpr
+# Log file: F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/simple_count_Verilog/vivado.log
+# Journal file: F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/simple_count_Verilog\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/simple_count_Verilog/simple_count_Verilog.xpr
+INFO: [Project 1-313] Project file moved from 'F:/Notes/CG3207/project/CG3207Lab/yetong lab 1/verilog/simple_count_Verilog' since last save.
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'G:/Xilinx/Vivado/2020.1/data/ip'.
+update_compile_order -fileset sources_1
+exit
+INFO: [Common 17-206] Exiting Vivado at Sat Sep  5 12:10:50 2020...

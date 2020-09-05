@@ -1,0 +1,14 @@
+#-----------------------------------------------------------
+# Vivado v2020.1 (64-bit)
+# SW Build 2902540 on Wed May 27 19:54:49 MDT 2020
+# IP Build 2902112 on Wed May 27 22:43:36 MDT 2020
+# Start of session at: Sat Sep  5 12:06:30 2020
+# Process ID: 1376
+# Current directory: F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/simple_count_Verilog
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent16140 F:\Notes\CG3207\project\CG3207Lab\yetong_lab_1\verilog\simple_count_Verilog\simple_count_Verilog.xpr
+# Log file: F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/simple_count_Verilog/vivado.log
+# Journal file: F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/simple_count_Verilog\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/simple_count_Verilog/simple_count_Verilog.xpr
+update_compile_order -fileset sources_1
