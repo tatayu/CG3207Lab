@@ -56,7 +56,7 @@ UART
 
 ; Rest of the constants should be declared below.
 DELAY_VAL   
-		DCD  0x6			; The number of steps of delay // const unsigned int DELAY_VAL = 4;
+		DCD  0x4			; The number of steps of delay // const unsigned int DELAY_VAL = 4;
 variable1_addr
 		DCD variable1		; address of variable1. Required since we are avoiding pseudo-instructions // unsigned int * const variable1_addr = &variable1;
 constant1

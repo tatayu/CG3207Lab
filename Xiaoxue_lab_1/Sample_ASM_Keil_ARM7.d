@@ -1,1 +1,1 @@
-.\Sample_ASM_Keil_ARM7.o: C:\Users\kateq\Downloads\Sample_ASM_Keil_ARM7.s
+.\Sample_ASM_Keil_ARM7.o: C:\Keil\Lab\Sample_ASM_Keil_ARM7.s

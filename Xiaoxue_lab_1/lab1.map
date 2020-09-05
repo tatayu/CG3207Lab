@@ -17,7 +17,7 @@ Image Symbol Table
     Symbol Name                              Value     Ov Type        Size  Object(Section)
 
     MYCODE                                   0x00000000   Section       48  sample_asm_keil_arm7.o(MYCODE)
-    C:\Users\kateq\Downloads\Sample_ASM_Keil_ARM7.s 0x00000000   Number         0  sample_asm_keil_arm7.o ABSOLUTE
+    C:\Keil\Lab\Sample_ASM_Keil_ARM7.s       0x00000000   Number         0  sample_asm_keil_arm7.o ABSOLUTE
     CONSTANTS                                0x00000200   Section       44  sample_asm_keil_arm7.o(CONSTANTS)
     LEDS                                     0x00000200   Data           0  sample_asm_keil_arm7.o(CONSTANTS)
     DIPS                                     0x00000204   Data           0  sample_asm_keil_arm7.o(CONSTANTS)
@@ -69,10 +69,10 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
-        48          0         44          4          0        260   sample_asm_keil_arm7.o
+        48          0         44          4          0        232   sample_asm_keil_arm7.o
 
     ----------------------------------------------------------------------
-       512          0         44          4          0        260   Object Totals
+       512          0         44          4          0        232   Object Totals
          0          0          0          0          0          0   (incl. Generated)
        464          0          0          0          0          0   (incl. Padding)
 
@@ -87,8 +87,8 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-       512          0         44          4          0        260   Grand Totals
-       512          0         44          4          0        260   ELF Image Totals
+       512          0         44          4          0        232   Grand Totals
+       512          0         44          4          0        232   ELF Image Totals
        512          0         44          4          0          0   ROM Totals
 
 ==============================================================================
