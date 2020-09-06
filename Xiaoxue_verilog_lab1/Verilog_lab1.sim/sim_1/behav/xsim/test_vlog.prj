@@ -1,0 +1,13 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  \
+"C:/Users/kateq/Downloads/Lab_1_Template/Clock_Enable.v" \
+"C:/Users/kateq/Downloads/Lab_1_Template/Get_MEM.v" \
+"C:/Users/kateq/Downloads/Lab_1_Template/Seven_Seg_Nexys.v" \
+"C:/Users/kateq/Downloads/Lab_1_Template/Top_Nexys.v" \
+"../../../../Verilog_lab1.srcs/sim_1/new/test.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort
