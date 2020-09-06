@@ -12,7 +12,7 @@ module Get_MEM(
 	input enable,				// enable signal to read the next content
 	output reg [31:0] data,			// 32 bits memory contents for 7-segments display
     output reg upper_lower);      	// 1-bit signal rerequied for LEDs, indicating which half of the Memory data is displaying on LEDs
-								// upper_lower = 1 to display upper half of the Memory data on LEDs
+								// upper_lower = 0 to display upper half of the Memory data on LEDs
     
 // declare INSTR_MEM and DATA_CONST_MEM
 reg [31:0] INSTR_MEM [0:127];

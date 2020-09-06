@@ -11,10 +11,10 @@ module Top(
     input clk,  			// fundamental clock 1MHz
     input btnU, 			// button BTNU for 4Hz speed
     input btnC, 			// button BTNC for pause
-    output reg [15:0]led,   	// 16 LEDs to display upper or lower 16 bits of memory data
-    output dp,  			// dot point of 7-segments, can be deleted if 7-segments are not implemented
-    output [7:0]anode, 		// anodes of 7-segments, can be deleted if 7-segments are not implemented
-    output [6:0]cathode  	// cathodes of 7-segments, can be deleted if 7-segments are not implemented
+    output [15:0]led   	// 16 LEDs to display upper or lower 16 bits of memory data
+    //output dp,  			// dot point of 7-segments, can be deleted if 7-segments are not implemented
+    //output [7:0]anode, 	// anodes of 7-segments, can be deleted if 7-segments are not implemented
+    //output [6:0]cathode  	// cathodes of 7-segments, can be deleted if 7-segments are not implemented
     );
 
 wire enable; 			// enable signal to read the next memory content
@@ -23,11 +23,11 @@ wire upper_lower;   	// 1-bit signal used between modules to indicate either upp
 wire [31:0] data;   // entire 32-bit contents displaying on LEDs and 7-segments, can be deleted if 7-segments are not implemented
     
 // Choose 1hz or 4hz display frequency based on BTNU and BTNC readings, using given module Clock_Enable.v
-Clock_Enable(clk, btnU, btnC, enable);
+Clock_Enable clock_enable(clk, btnU, btnC, enable);
 
 
 // Fetch memory content, using given module Get_MEM.v
-Get_MEM(clk, enable, data, upper_lower);
+Get_MEM get_mem(clk, enable, data, upper_lower);
 
 
 // Displays the 32-bit memory data on 7-segments, using given module Seven_Seg.v
@@ -37,10 +37,7 @@ Get_MEM(clk, enable, data, upper_lower);
 
 // split the 32-bit Memory data using a multiplexer to display on led 
 
-    always @(posedge clk)
-    begin
-    led <= upper_lower == 1'b0 ? data[31:16] : data[15:0]; //upper_lower = 0 will display upper half
-    end
+assign led = upper_lower == 1'b0 ? data[31:16] : data[15:0]; //upper_lower = 0 will display upper half
 
 
 endmodule

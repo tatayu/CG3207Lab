@@ -1,0 +1,416 @@
+
+*** Running vivado
+    with args -log Top.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source Top.tcl
+
+
+****** Vivado v2019.1 (64-bit)
+  **** SW Build 2552052 on Fri May 24 14:49:42 MDT 2019
+  **** IP Build 2548770 on Fri May 24 18:01:18 MDT 2019
+    ** Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+
+source Top.tcl -notrace
+Command: synth_design -top Top -part xc7a100tcsg324-1
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Device 21-403] Loading part xc7a100tcsg324-1
+INFO: Launching helper process for spawning children vivado processes
+INFO: Helper process launched with PID 9988 
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 690.816 ; gain = 177.914
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'Top' [F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Top_Nexys.v:10]
+INFO: [Synth 8-6157] synthesizing module 'Clock_Enable' [F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Clock_Enable.v:7]
+WARNING: [Synth 8-6014] Unused sequential element enable_one_hz_reg was removed.  [F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Clock_Enable.v:23]
+WARNING: [Synth 8-6014] Unused sequential element enable_four_hz_reg was removed.  [F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Clock_Enable.v:27]
+INFO: [Synth 8-6155] done synthesizing module 'Clock_Enable' (1#1) [F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Clock_Enable.v:7]
+INFO: [Synth 8-6157] synthesizing module 'Get_MEM' [F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Get_MEM.v:10]
+INFO: [Synth 8-6155] done synthesizing module 'Get_MEM' (2#1) [F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Get_MEM.v:10]
+INFO: [Synth 8-6155] done synthesizing module 'Top' (3#1) [F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Top_Nexys.v:10]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 754.703 ; gain = 241.801
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 754.703 ; gain = 241.801
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 754.703 ; gain = 241.801
+---------------------------------------------------------------------------------
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Nexys4_Master_Lab1.xdc]
+WARNING: [Vivado 12-584] No ports matched 'cathode[0]'. [F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Nexys4_Master_Lab1.xdc:137]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Nexys4_Master_Lab1.xdc:137]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'cathode[0]'. [F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Nexys4_Master_Lab1.xdc:138]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Nexys4_Master_Lab1.xdc:138]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'cathode[1]'. [F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Nexys4_Master_Lab1.xdc:140]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Nexys4_Master_Lab1.xdc:140]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'cathode[1]'. [F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Nexys4_Master_Lab1.xdc:141]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Nexys4_Master_Lab1.xdc:141]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'cathode[2]'. [F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Nexys4_Master_Lab1.xdc:143]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Nexys4_Master_Lab1.xdc:143]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'cathode[2]'. [F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Nexys4_Master_Lab1.xdc:144]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Nexys4_Master_Lab1.xdc:144]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'cathode[3]'. [F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Nexys4_Master_Lab1.xdc:146]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Nexys4_Master_Lab1.xdc:146]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'cathode[3]'. [F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Nexys4_Master_Lab1.xdc:147]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Nexys4_Master_Lab1.xdc:147]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'cathode[4]'. [F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Nexys4_Master_Lab1.xdc:149]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Nexys4_Master_Lab1.xdc:149]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'cathode[4]'. [F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Nexys4_Master_Lab1.xdc:150]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Nexys4_Master_Lab1.xdc:150]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'cathode[5]'. [F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Nexys4_Master_Lab1.xdc:152]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Nexys4_Master_Lab1.xdc:152]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'cathode[5]'. [F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Nexys4_Master_Lab1.xdc:153]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Nexys4_Master_Lab1.xdc:153]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'cathode[6]'. [F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Nexys4_Master_Lab1.xdc:155]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Nexys4_Master_Lab1.xdc:155]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'cathode[6]'. [F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Nexys4_Master_Lab1.xdc:156]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Nexys4_Master_Lab1.xdc:156]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dp'. [F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Nexys4_Master_Lab1.xdc:159]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Nexys4_Master_Lab1.xdc:159]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dp'. [F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Nexys4_Master_Lab1.xdc:160]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Nexys4_Master_Lab1.xdc:160]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'anode[0]'. [F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Nexys4_Master_Lab1.xdc:163]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Nexys4_Master_Lab1.xdc:163]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'anode[0]'. [F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Nexys4_Master_Lab1.xdc:164]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Nexys4_Master_Lab1.xdc:164]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'anode[1]'. [F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Nexys4_Master_Lab1.xdc:166]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Nexys4_Master_Lab1.xdc:166]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'anode[1]'. [F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Nexys4_Master_Lab1.xdc:167]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Nexys4_Master_Lab1.xdc:167]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'anode[2]'. [F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Nexys4_Master_Lab1.xdc:169]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Nexys4_Master_Lab1.xdc:169]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'anode[2]'. [F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Nexys4_Master_Lab1.xdc:170]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Nexys4_Master_Lab1.xdc:170]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'anode[3]'. [F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Nexys4_Master_Lab1.xdc:172]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Nexys4_Master_Lab1.xdc:172]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'anode[3]'. [F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Nexys4_Master_Lab1.xdc:173]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Nexys4_Master_Lab1.xdc:173]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'anode[4]'. [F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Nexys4_Master_Lab1.xdc:175]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Nexys4_Master_Lab1.xdc:175]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'anode[4]'. [F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Nexys4_Master_Lab1.xdc:176]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Nexys4_Master_Lab1.xdc:176]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'anode[5]'. [F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Nexys4_Master_Lab1.xdc:178]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Nexys4_Master_Lab1.xdc:178]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'anode[5]'. [F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Nexys4_Master_Lab1.xdc:179]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Nexys4_Master_Lab1.xdc:179]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'anode[6]'. [F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Nexys4_Master_Lab1.xdc:181]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Nexys4_Master_Lab1.xdc:181]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'anode[6]'. [F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Nexys4_Master_Lab1.xdc:182]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Nexys4_Master_Lab1.xdc:182]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'anode[7]'. [F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Nexys4_Master_Lab1.xdc:184]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Nexys4_Master_Lab1.xdc:184]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'anode[7]'. [F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Nexys4_Master_Lab1.xdc:185]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Nexys4_Master_Lab1.xdc:185]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+Finished Parsing XDC File [F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Nexys4_Master_Lab1.xdc]
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Nexys4_Master_Lab1.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/Top_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/Top_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 869.082 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.021 . Memory (MB): peak = 869.082 ; gain = 0.000
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:08 ; elapsed = 00:00:12 . Memory (MB): peak = 869.082 ; gain = 356.180
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7a100tcsg324-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:08 ; elapsed = 00:00:12 . Memory (MB): peak = 869.082 ; gain = 356.180
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:08 ; elapsed = 00:00:12 . Memory (MB): peak = 869.082 ; gain = 356.180
+---------------------------------------------------------------------------------
+INFO: [Synth 8-5546] ROM "INSTR_MEM" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "DATA_CONST_MEM" won't be mapped to RAM because it is too sparse
+WARNING: [Synth 8-6014] Unused sequential element data0 was removed.  [F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Get_MEM.v:72]
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:08 ; elapsed = 00:00:13 . Memory (MB): peak = 869.082 ; gain = 356.180
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     27 Bit       Adders := 1     
+	   2 Input     25 Bit       Adders := 1     
+	   2 Input      9 Bit       Adders := 2     
++---Registers : 
+	               32 Bit    Registers := 1     
+	                9 Bit    Registers := 1     
+	                1 Bit    Registers := 2     
++---Muxes : 
+	 129 Input     32 Bit        Muxes := 2     
+	   2 Input     32 Bit        Muxes := 1     
+	   2 Input     27 Bit        Muxes := 1     
+	   2 Input     16 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 2     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Hierarchical Component Statistics 
+---------------------------------------------------------------------------------
+Hierarchical RTL Component report 
+Module Top 
+Detailed RTL Component Info : 
++---Muxes : 
+	   2 Input     16 Bit        Muxes := 1     
+Module Clock_Enable 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     27 Bit       Adders := 1     
+	   2 Input     25 Bit       Adders := 1     
++---Registers : 
+	                1 Bit    Registers := 1     
++---Muxes : 
+	   2 Input     27 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 2     
+Module Get_MEM 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      9 Bit       Adders := 2     
++---Registers : 
+	               32 Bit    Registers := 1     
+	                9 Bit    Registers := 1     
+	                1 Bit    Registers := 1     
++---Muxes : 
+	 129 Input     32 Bit        Muxes := 2     
+	   2 Input     32 Bit        Muxes := 1     
+---------------------------------------------------------------------------------
+Finished RTL Hierarchical Component Statistics
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 240 (col length:80)
+BRAMs: 270 (col length: RAMB18 80 RAMB36 40)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+Warning: Parallel synthesis criteria is not met 
+INFO: [Synth 8-3886] merging instance 'get_mem/data_reg[17]' (FDE) to 'get_mem/data_reg[20]'
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:09 ; elapsed = 00:00:14 . Memory (MB): peak = 869.082 ; gain = 356.180
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:15 ; elapsed = 00:00:20 . Memory (MB): peak = 869.082 ; gain = 356.180
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:15 ; elapsed = 00:00:20 . Memory (MB): peak = 871.695 ; gain = 358.793
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:15 ; elapsed = 00:00:20 . Memory (MB): peak = 873.352 ; gain = 360.449
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:16 ; elapsed = 00:00:22 . Memory (MB): peak = 880.121 ; gain = 367.219
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:16 ; elapsed = 00:00:22 . Memory (MB): peak = 880.121 ; gain = 367.219
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:16 ; elapsed = 00:00:22 . Memory (MB): peak = 880.121 ; gain = 367.219
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:16 ; elapsed = 00:00:22 . Memory (MB): peak = 880.121 ; gain = 367.219
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:16 ; elapsed = 00:00:22 . Memory (MB): peak = 880.121 ; gain = 367.219
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:16 ; elapsed = 00:00:22 . Memory (MB): peak = 880.121 ; gain = 367.219
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+-------+------+
+|      |Cell   |Count |
++------+-------+------+
+|1     |BUFG   |     1|
+|2     |CARRY4 |    28|
+|3     |LUT1   |     2|
+|4     |LUT2   |     9|
+|5     |LUT3   |    22|
+|6     |LUT4   |    31|
+|7     |LUT5   |    17|
+|8     |LUT6   |    48|
+|9     |MUXF7  |     3|
+|10    |FDRE   |    95|
+|11    |FDSE   |    13|
+|12    |IBUF   |     3|
+|13    |OBUF   |    16|
++------+-------+------+
+
+Report Instance Areas: 
++------+---------------+-------------+------+
+|      |Instance       |Module       |Cells |
++------+---------------+-------------+------+
+|1     |top            |             |   288|
+|2     |  clock_enable |Clock_Enable |   125|
+|3     |  get_mem      |Get_MEM      |   143|
++------+---------------+-------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:16 ; elapsed = 00:00:22 . Memory (MB): peak = 880.121 ; gain = 367.219
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 1 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:12 ; elapsed = 00:00:18 . Memory (MB): peak = 880.121 ; gain = 252.840
+Synthesis Optimization Complete : Time (s): cpu = 00:00:17 ; elapsed = 00:00:22 . Memory (MB): peak = 880.121 ; gain = 367.219
+INFO: [Project 1-571] Translating synthesized netlist
+INFO: [Netlist 29-17] Analyzing 31 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 894.547 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+INFO: [Common 17-83] Releasing license: Synthesis
+21 Infos, 35 Warnings, 32 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:20 ; elapsed = 00:00:29 . Memory (MB): peak = 894.547 ; gain = 603.344
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 894.547 ; gain = 0.000
+WARNING: [Constraints 18-5210] No constraints selected for write.
+Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
+INFO: [Common 17-1381] The checkpoint 'F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1/lab_1.runs/synth_1/Top.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file Top_utilization_synth.rpt -pb Top_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Sun Sep  6 23:08:46 2020...

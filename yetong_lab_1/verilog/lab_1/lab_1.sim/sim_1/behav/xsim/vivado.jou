@@ -1,0 +1,15 @@
+#-----------------------------------------------------------
+# Vivado v2019.1 (64-bit)
+# SW Build 2552052 on Fri May 24 14:49:42 MDT 2019
+# IP Build 2548770 on Fri May 24 18:01:18 MDT 2019
+# Start of session at: Sun Sep  6 12:30:44 2020
+# Process ID: 17164
+# Current directory: F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1/lab_1/lab_1.sim/sim_1/behav/xsim
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent15400 F:\Notes\CG3207\project\CG3207Lab\yetong_lab_1\verilog\lab_1\lab_1\lab_1.sim\sim_1\behav\xsim\testbench_behav.wdb
+# Log file: F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1/lab_1/lab_1.sim/sim_1/behav/xsim/vivado.log
+# Journal file: F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1/lab_1/lab_1.sim/sim_1/behav/xsim\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_wave_database {F:\Notes\CG3207\project\CG3207Lab\yetong_lab_1\verilog\lab_1\lab_1\lab_1.sim\sim_1\behav\xsim\testbench_behav.wdb}
+close_sim
+close_project

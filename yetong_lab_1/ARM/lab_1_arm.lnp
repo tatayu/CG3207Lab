@@ -1,0 +1,4 @@
+--cpu ARM7TDMI "lab_1_asm_keil_arm7.o" 
+--ro-base 0x00000000 --entry 0x00000000 --rw-base 0x00000800 --strict --summary_stderr --info summarysizes --map --xref --callgraph --symbols 
+--info sizes --info totals --info unused --info veneers 
+ --list ".\lab_1_arm.map" -o lab_1_arm.axf
