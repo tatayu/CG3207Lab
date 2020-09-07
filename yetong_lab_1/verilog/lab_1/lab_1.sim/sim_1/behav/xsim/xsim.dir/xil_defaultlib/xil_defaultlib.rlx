@@ -2,8 +2,8 @@
 2019.1
 May 24 2019
 15:06:07
-F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1/lab_1/lab_1.sim/sim_1/behav/xsim/glbl.v,1558713910,verilog,,,,glbl,,,,,,,,
-F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1/lab_1/lab_1.srcs/sim_1/new/testbench.v,1599385496,verilog,,,,testbench,,,,,,,,
-F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Clock_Enable.v,1599386110,verilog,,F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Get_MEM.v,,Clock_Enable,,,,,,,,
+F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1/lab_1.sim/sim_1/behav/xsim/glbl.v,1558713910,verilog,,,,glbl,,,,,,,,
+,,,,,,testbench,,,,,,,,
+F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Clock_Enable.v,1599485048,verilog,,F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Get_MEM.v,,Clock_Enable,,,,,,,,
 F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Get_MEM.v,1599367816,verilog,,F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Top_Nexys.v,,Get_MEM,,,,,,,,
-F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Top_Nexys.v,1599367978,verilog,,F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1/lab_1/lab_1.srcs/sim_1/new/testbench.v,,Top,,,,,,,,
+F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Top_Nexys.v,1599367978,verilog,,F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1/lab_1.srcs/sim_1/new/testbench.v,,Top,,,,,,,,

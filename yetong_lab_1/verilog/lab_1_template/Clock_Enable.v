@@ -1,3 +1,4 @@
+`timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
 // This module is to generate an enable signal for different display frequency based on pushbuttons
 // Fill in the blank to complete this module 
@@ -40,7 +41,7 @@ begin
     end    
     else if(btnC == 1) //pause
     begin
-        enable <= 1'b0; //reading data disable
+        enable <= 1'b0;
     end    
 end
 	

@@ -5,7 +5,6 @@ Using 2 slave threads.
 Starting static elaboration
 Completed static elaboration
 Starting simulation data flow analysis
-WARNING: [XSIM 43-4099] "F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Clock_Enable.v" Line 7. Module Clock_Enable doesn't have a timescale but at least one module in design has a timescale.
 Completed simulation data flow analysis
 Time Resolution for simulation is 1ps
 Compiling module xil_defaultlib.Clock_Enable

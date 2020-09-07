@@ -1,0 +1,27 @@
+#-----------------------------------------------------------
+# Vivado v2019.1 (64-bit)
+# SW Build 2552052 on Fri May 24 14:49:42 MDT 2019
+# IP Build 2548770 on Fri May 24 18:01:18 MDT 2019
+# Start of session at: Mon Sep  7 21:36:38 2020
+# Process ID: 12316
+# Current directory: F:/Notes/CG3207/project/CG3207Lab/Xiaoxue_verilog_lab1
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent20648 F:\Notes\CG3207\project\CG3207Lab\Xiaoxue_verilog_lab1\Verilog_lab1.xpr
+# Log file: F:/Notes/CG3207/project/CG3207Lab/Xiaoxue_verilog_lab1/vivado.log
+# Journal file: F:/Notes/CG3207/project/CG3207Lab/Xiaoxue_verilog_lab1\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project F:/Notes/CG3207/project/CG3207Lab/Xiaoxue_verilog_lab1/Verilog_lab1.xpr
+INFO: [Project 1-313] Project file moved from 'D:/CG3207Lab/verilog_lab1' since last save.
+CRITICAL WARNING: [Project 1-19] Could not find the file 'C:/Users/kateq/Downloads/Lab_1_Template/Clock_Enable.v'.
+CRITICAL WARNING: [Project 1-19] Could not find the file 'C:/Users/kateq/Downloads/Lab_1_Template/Get_MEM.v'.
+CRITICAL WARNING: [Project 1-19] Could not find the file 'C:/Users/kateq/Downloads/Lab_1_Template/Seven_Seg_Nexys.v'.
+CRITICAL WARNING: [Project 1-19] Could not find the file 'C:/Users/kateq/Downloads/Lab_1_Template/Top_Nexys.v'.
+CRITICAL WARNING: [Project 1-19] Could not find the file 'C:/Users/kateq/Downloads/Lab_1_Template/Nexys4_Master_Lab1.xdc'.
+Scanning sources...
+Finished scanning sources
+INFO: [Project 1-230] Project 'Verilog_lab1.xpr' upgraded for this version of Vivado.
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'G:/Xilinx/Vivado/2019.1/data/ip'.
+exit
+INFO: [Common 17-206] Exiting Vivado at Mon Sep  7 21:40:25 2020...

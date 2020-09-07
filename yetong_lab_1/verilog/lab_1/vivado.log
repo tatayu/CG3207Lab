@@ -2,70 +2,80 @@
 # Vivado v2019.1 (64-bit)
 # SW Build 2552052 on Fri May 24 14:49:42 MDT 2019
 # IP Build 2548770 on Fri May 24 18:01:18 MDT 2019
-# Start of session at: Sun Sep  6 23:06:02 2020
-# Process ID: 19036
+# Start of session at: Mon Sep  7 21:19:43 2020
+# Process ID: 14868
 # Current directory: F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1
-# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent9124 F:\Notes\CG3207\project\CG3207Lab\yetong_lab_1\verilog\lab_1\lab_1.xpr
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent20072 F:\Notes\CG3207\project\CG3207Lab\yetong_lab_1\verilog\lab_1\lab_1.xpr
 # Log file: F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1/vivado.log
 # Journal file: F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1\vivado.jou
 #-----------------------------------------------------------
 start_gui
 open_project F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1/lab_1.xpr
-INFO: [Project 1-313] Project file moved from 'F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1/lab_1' since last save.
-WARNING: [Project 1-312] File not found as 'F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/lab_1_template/Clock_Enable.v'; using path 'F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Clock_Enable.v' instead.
-WARNING: [Project 1-312] File not found as 'F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/lab_1_template/Get_MEM.v'; using path 'F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Get_MEM.v' instead.
-WARNING: [Project 1-312] File not found as 'F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/lab_1_template/Top_Nexys.v'; using path 'F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Top_Nexys.v' instead.
-WARNING: [Project 1-312] File not found as 'F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/lab_1_template/Seven_Seg_Nexys.v'; using path 'F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Seven_Seg_Nexys.v' instead.
-WARNING: [Project 1-312] File not found as 'F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/lab_1_template/Nexys4_Master_Lab1.xdc'; using path 'F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Nexys4_Master_Lab1.xdc' instead.
 Scanning sources...
 Finished scanning sources
-WARNING: [Project 1-312] File not found as 'F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/lab_1_template/Clock_Enable.v'; using path 'F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Clock_Enable.v' instead.
-WARNING: [Project 1-312] File not found as 'F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/lab_1_template/Get_MEM.v'; using path 'F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Get_MEM.v' instead.
-WARNING: [Project 1-312] File not found as 'F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/lab_1_template/Top_Nexys.v'; using path 'F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Top_Nexys.v' instead.
-WARNING: [Project 1-312] File not found as 'F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/lab_1_template/Seven_Seg_Nexys.v'; using path 'F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Seven_Seg_Nexys.v' instead.
-WARNING: [Project 1-312] File not found as 'F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/lab_1_template/Nexys4_Master_Lab1.xdc'; using path 'F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Nexys4_Master_Lab1.xdc' instead.
-WARNING: [Project 1-312] File not found as 'F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/lab_1_template/Clock_Enable.v'; using path 'F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Clock_Enable.v' instead.
-WARNING: [Project 1-312] File not found as 'F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/lab_1_template/Get_MEM.v'; using path 'F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Get_MEM.v' instead.
-WARNING: [Project 1-312] File not found as 'F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/lab_1_template/Top_Nexys.v'; using path 'F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Top_Nexys.v' instead.
-WARNING: [Project 1-312] File not found as 'F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/lab_1_template/Seven_Seg_Nexys.v'; using path 'F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Seven_Seg_Nexys.v' instead.
-WARNING: [Project 1-312] File not found as 'F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/lab_1_template/Nexys4_Master_Lab1.xdc'; using path 'F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Nexys4_Master_Lab1.xdc' instead.
 INFO: [IP_Flow 19-234] Refreshing IP repositories
 INFO: [IP_Flow 19-1704] No user IP repositories specified
 INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'G:/Xilinx/Vivado/2019.1/data/ip'.
-open_project: Time (s): cpu = 00:00:10 ; elapsed = 00:00:07 . Memory (MB): peak = 649.688 ; gain = 51.695
 update_compile_order -fileset sources_1
-reset_run synth_1
-launch_runs impl_1 -to_step write_bitstream -jobs 8
-[Sun Sep  6 23:08:12 2020] Launched synth_1...
-Run output will be captured here: F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1/lab_1.runs/synth_1/runme.log
-[Sun Sep  6 23:08:12 2020] Launched impl_1...
-Run output will be captured here: F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1/lab_1.runs/impl_1/runme.log
-open_hw
-connect_hw_server
-INFO: [Labtools 27-2285] Connecting to hw_server url TCP:localhost:3121
-INFO: [Labtools 27-2222] Launching hw_server...
-INFO: [Labtools 27-2221] Launch Output:
-
-****** Xilinx hw_server v2019.1
-  **** Build date : May 24 2019 at 15:13:31
-    ** Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
-
-
-open_hw_target
-INFO: [Labtoolstcl 44-466] Opening hw_target localhost:3121/xilinx_tcf/Digilent/210274533729A
-set_property PROGRAM.FILE {F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1/lab_1.runs/impl_1/Top.bit} [get_hw_devices xc7a100t_0]
-current_hw_device [get_hw_devices xc7a100t_0]
-refresh_hw_device -update_hw_probes false [lindex [get_hw_devices xc7a100t_0] 0]
-INFO: [Labtools 27-1434] Device xc7a100t (JTAG device index = 0) is programmed with a design that has no supported debug core(s) in it.
-set_property PROBES.FILE {} [get_hw_devices xc7a100t_0]
-set_property FULL_PROBES.FILE {} [get_hw_devices xc7a100t_0]
-set_property PROGRAM.FILE {F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1/lab_1.runs/impl_1/Top.bit} [get_hw_devices xc7a100t_0]
-program_hw_devices [get_hw_devices xc7a100t_0]
-INFO: [Labtools 27-3164] End of startup status: HIGH
-refresh_hw_device [lindex [get_hw_devices xc7a100t_0] 0]
-INFO: [Labtools 27-1434] Device xc7a100t (JTAG device index = 0) is programmed with a design that has no supported debug core(s) in it.
-undo
-INFO: [Common 17-17] undo 'set_property PROGRAM.FILE {F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1/lab_1.runs/impl_1/Top.bit} [get_hw_devices xc7a100t_0]'
-close_hw
+launch_simulation
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1/lab_1.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [SIM-utils-54] Inspecting design source files for 'testbench' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1/lab_1.sim/sim_1/behav/xsim'
+"xvlog --incr --relax -prj testbench_vlog.prj"
+INFO: [VRFC 10-2263] Analyzing Verilog file "F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Clock_Enable.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Clock_Enable
+INFO: [VRFC 10-2263] Analyzing Verilog file "F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Get_MEM.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Get_MEM
+INFO: [VRFC 10-2263] Analyzing Verilog file "F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Top_Nexys.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Top
+INFO: [VRFC 10-2263] Analyzing Verilog file "F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1/lab_1.srcs/sim_1/new/testbench.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module testbench
+INFO: [USF-XSim-69] 'compile' step finished in '1' seconds
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1/lab_1.sim/sim_1/behav/xsim'
+"xelab -wto dc5b0b4d2c0d4d19a4647bc2a955b577 --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot testbench_behav xil_defaultlib.testbench xil_defaultlib.glbl -log elaborate.log"
+Vivado Simulator 2019.1
+Copyright 1986-1999, 2001-2019 Xilinx, Inc. All Rights Reserved.
+Running: G:/Xilinx/Vivado/2019.1/bin/unwrapped/win64.o/xelab.exe -wto dc5b0b4d2c0d4d19a4647bc2a955b577 --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot testbench_behav xil_defaultlib.testbench xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module xil_defaultlib.Clock_Enable
+Compiling module xil_defaultlib.Get_MEM
+Compiling module xil_defaultlib.Top
+Compiling module xil_defaultlib.testbench
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot testbench_behav
+INFO: [USF-XSim-69] 'elaborate' step finished in '1' seconds
+INFO: [USF-XSim-4] XSim::Simulate design
+INFO: [USF-XSim-61] Executing 'SIMULATE' step in 'F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1/lab_1.sim/sim_1/behav/xsim'
+INFO: [USF-XSim-98] *** Running xsim
+   with args "testbench_behav -key {Behavioral:sim_1:Functional:testbench} -tclbatch {testbench.tcl} -log {simulate.log}"
+INFO: [USF-XSim-8] Loading simulator feature
+Vivado Simulator 2019.1
+Time resolution is 1 ps
+source testbench.tcl
+# set curr_wave [current_wave_config]
+# if { [string length $curr_wave] == 0 } {
+#   if { [llength [get_objects]] > 0} {
+#     add_wave /
+#     set_property needs_save false [current_wave_config]
+#   } else {
+#      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
+#   }
+# }
+# run 1000ns
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'testbench_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 1000ns
+launch_simulation: Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 793.617 ; gain = 18.664
+close_sim
+INFO: [Simtcl 6-16] Simulation closed
 exit
-INFO: [Common 17-206] Exiting Vivado at Sun Sep  6 23:15:38 2020...
+INFO: [Common 17-206] Exiting Vivado at Mon Sep  7 21:36:16 2020...

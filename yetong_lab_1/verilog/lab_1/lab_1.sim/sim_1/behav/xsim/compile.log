@@ -4,5 +4,5 @@ INFO: [VRFC 10-2263] Analyzing Verilog file "F:/Notes/CG3207/project/CG3207Lab/y
 INFO: [VRFC 10-311] analyzing module Get_MEM
 INFO: [VRFC 10-2263] Analyzing Verilog file "F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1_template/Top_Nexys.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module Top
-INFO: [VRFC 10-2263] Analyzing Verilog file "F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1/lab_1/lab_1.srcs/sim_1/new/testbench.v" into library xil_defaultlib
+INFO: [VRFC 10-2263] Analyzing Verilog file "F:/Notes/CG3207/project/CG3207Lab/yetong_lab_1/verilog/lab_1/lab_1.srcs/sim_1/new/testbench.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module testbench

@@ -1,8 +1,8 @@
 # compile verilog/system verilog design source files
 verilog xil_defaultlib  \
-"../../../../../../lab_1_template/Clock_Enable.v" \
-"../../../../../../lab_1_template/Get_MEM.v" \
-"../../../../../../lab_1_template/Top_Nexys.v" \
+"../../../../../lab_1_template/Clock_Enable.v" \
+"../../../../../lab_1_template/Get_MEM.v" \
+"../../../../../lab_1_template/Top_Nexys.v" \
 "../../../../lab_1.srcs/sim_1/new/testbench.v" \
 
 # compile glbl module
