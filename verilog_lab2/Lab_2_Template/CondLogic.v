@@ -48,6 +48,7 @@ module CondLogic(
     
     reg CondEx ;
     reg N = 0, Z = 0, C = 0, V = 0 ;
+    wire [1:0] FlagWrite;
     //<extra signals, if any>
     
     always@(Cond, N, Z, C, V)
@@ -74,7 +75,39 @@ module CondLogic(
             4'b1111: CondEx <= 1'bx ;               // unpredictable   
         endcase   
     end
+    
+    assign PCSrc = PCS && CondEx;
+    assign RegWrite = RegW && CondEx;
+    assign MemWrite = MemW && CondEx;
+    assign FlagWrite = CondEx && FlagW;
+    
+    always@(posedge CLK)
+    begin
+        if(FlagWrite[1] == 1'b1) 
+        begin
+            N <= ALUFlags[3];
+            Z <= ALUFlags[2];
+        end
+        else
+        begin
+            N <= 0;
+            Z <= 0;
+        end    
+    end
         
+    always@(posedge CLK)
+    begin
+        if(FlagWrite[0] == 1'b1) 
+        begin
+            C <= ALUFlags[1];
+            V <= ALUFlags[0];
+        end
+        else
+        begin
+            C <= 0;
+            V <= 0;
+        end
+    end
 
 endmodule
 
