@@ -83,7 +83,7 @@ module ARM(
     //wire CLK ;
     wire PCS ;
     wire RegW ;
-    wire NoWrite ;
+    wire NoWrite ; //TODO: For CMP... will come back to it
     wire MemW ;
     wire [1:0] FlagW ;
     wire [3:0] Cond ;
@@ -92,7 +92,7 @@ module ARM(
     wire RegWrite ; 
     //wire MemWrite
        
-    // Shifter signals
+    // Shifter signals // TODO: Will come back
     wire [1:0] Sh ;
     wire [4:0] Shamt5 ;
     wire [31:0] ShIn ;
@@ -109,7 +109,7 @@ module ARM(
     //wire CLK ;
     //wire RESET ;
     wire WE_PC ;    
-    wire [31:0] PC_IN ;
+    wire [31:0] PC_IN ; 
     //wire [31:0] PC ; 
         
     // Other internal signals here
@@ -119,8 +119,34 @@ module ARM(
     
     // datapath connections here
     assign WE_PC = 1 ; // Will need to control it for multi-cycle operations (Multiplication, Division) and/or Pipelining with hazard hardware.
-
-
+    
+    //Register File
+    assign WE3 = RegWrite;
+    assign A1 = RegSrc[0] == 1 ? 4'b1111 : Instr[19:16]; //R15 or Rn
+    assign A2 = RegSrc[1] == 1 ? Instr[15:12] : Instr[3:0]; //Rd(for STR) or Rm
+    assign A3 = Instr[15:12];
+    assign WD3 = Result;
+    assign R15 = PCPlus8;
+    
+    //Extend Module Signals
+    assign InstrImm = Instr[23:0];
+    
+    //Decoder Signals
+    assign Rd = Instr[15:12];
+    assign Op = Instr[27:26];
+    assign Funct = (Op == 10) ? Instr[25:24] : Instr[25:20];
+    
+    //Conditional Logic Signals
+    assign Cond = Instr[31:28];
+    
+    //ALU Signals
+    assign Src_A = RD1;
+    assign Src_B = (ALUSrc == 0) ? RD2 : ExtImm;
+    
+    //PC Signals
+    assign PCPlus4 = PC + 4;
+    assign PCPlus8 = PCPlus4 + 4;
+    assign Result = MemtoReg == 1 ? ReadData : ALUResult;
     
     // Instantiate RegFile
     RegFile RegFile1( 
