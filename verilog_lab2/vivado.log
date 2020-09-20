@@ -1,0 +1,35 @@
+#-----------------------------------------------------------
+# Vivado v2019.1 (64-bit)
+# SW Build 2552052 on Fri May 24 14:49:42 MDT 2019
+# IP Build 2548770 on Fri May 24 18:01:18 MDT 2019
+# Start of session at: Sun Sep 20 11:21:56 2020
+# Process ID: 13524
+# Current directory: F:/Notes/CG3207/project/CG3207Lab/verilog_lab2
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent17120 F:\Notes\CG3207\project\CG3207Lab\verilog_lab2\project_1.xpr
+# Log file: F:/Notes/CG3207/project/CG3207Lab/verilog_lab2/vivado.log
+# Journal file: F:/Notes/CG3207/project/CG3207Lab/verilog_lab2\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project F:/Notes/CG3207/project/CG3207Lab/verilog_lab2/project_1.xpr
+INFO: [Project 1-313] Project file moved from 'D:/CG3207Lab/verilog_lab2' since last save.
+Scanning sources...
+Finished scanning sources
+WARNING: [filemgmt 56-2] IPUserFilesDir: Could not find the directory 'F:/Notes/CG3207/project/CG3207Lab/verilog_lab2/project_1.ip_user_files', nor could it be found using path 'D:/CG3207Lab/verilog_lab2/project_1.ip_user_files'.
+INFO: [Project 1-230] Project 'project_1.xpr' upgraded for this version of Vivado.
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'G:/Xilinx/Vivado/2019.1/data/ip'.
+open_project: Time (s): cpu = 00:00:06 ; elapsed = 00:00:08 . Memory (MB): peak = 672.105 ; gain = 67.563
+update_compile_order -fileset sources_1
+launch_runs impl_1 -jobs 8
+[Sun Sep 20 16:01:33 2020] Launched synth_1...
+Run output will be captured here: F:/Notes/CG3207/project/CG3207Lab/verilog_lab2/project_1.runs/synth_1/runme.log
+[Sun Sep 20 16:01:33 2020] Launched impl_1...
+Run output will be captured here: F:/Notes/CG3207/project/CG3207Lab/verilog_lab2/project_1.runs/impl_1/runme.log
+open_run impl_1
+INFO: [Device 21-403] Loading part xc7a100tcsg324-1
+INFO: [Common 17-41] Interrupt caught. Command should exit soon.
+INFO: [Netlist 29-17] Analyzing 10 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-479] Netlist was created with Vivado 2019.1
+INFO: [Common 17-344] 'open_run' was cancelled

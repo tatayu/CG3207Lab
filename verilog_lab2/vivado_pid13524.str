@@ -1,0 +1,381 @@
+/*
+
+Xilinx Vivado v2019.1 (64-bit) [Major: 2019, Minor: 1]
+SW Build: 2552052 on Fri May 24 14:49:42 MDT 2019
+IP Build: 2548770 on Fri May 24 18:01:18 MDT 2019
+
+Process ID (PID): 13524
+License: Customer
+
+Current time: 	Sun Sep 20 11:22:28 SRET 2020
+Time zone: 	Singapore Standard Time (Asia/Singapore)
+
+OS: Windows 10
+OS Version: 10.0
+OS Architecture: amd64
+Available processors (cores): 8
+
+Screen size: 2560x1440
+Screen resolution (DPI): 100
+Available screens: 1
+Available disk space: 26 GB
+Default font: family=Dialog,name=Dialog,style=plain,size=12
+
+Java version: 	9.0.4 64-bit
+Java home: 	G:/Xilinx/Vivado/2019.1/tps/win64/jre9.0.4
+Java executable location: 	G:/Xilinx/Vivado/2019.1/tps/win64/jre9.0.4/bin/java.exe
+Java initial memory (-Xms): 	128 MB
+Java maximum memory (-Xmx):	 3 GB
+
+
+User name: 	yeton
+User home directory: C:/Users/yeton
+User working directory: F:/Notes/CG3207/project/CG3207Lab/verilog_lab2
+User country: 	GB
+User language: 	en
+User locale: 	en_GB
+
+RDI_BASEROOT: G:/Xilinx/Vivado
+HDI_APPROOT: G:/Xilinx/Vivado/2019.1
+RDI_DATADIR: G:/Xilinx/Vivado/2019.1/data
+RDI_BINDIR: G:/Xilinx/Vivado/2019.1/bin
+
+Vivado preferences file location: C:/Users/yeton/AppData/Roaming/Xilinx/Vivado/2019.1/vivado.xml
+Vivado preferences directory: C:/Users/yeton/AppData/Roaming/Xilinx/Vivado/2019.1/
+Vivado layouts directory: C:/Users/yeton/AppData/Roaming/Xilinx/Vivado/2019.1/layouts
+PlanAhead jar file location: 	G:/Xilinx/Vivado/2019.1/lib/classes/planAhead.jar
+Vivado log file location: 	F:/Notes/CG3207/project/CG3207Lab/verilog_lab2/vivado.log
+Vivado journal file location: 	F:/Notes/CG3207/project/CG3207Lab/verilog_lab2/vivado.jou
+Engine tmp dir: 	F:/Notes/CG3207/project/CG3207Lab/verilog_lab2/.Xil/Vivado-13524-MRYTG
+
+Xilinx Environment Variables
+----------------------------
+XILINX: G:/Xilinx/Vivado/2019.1/ids_lite/ISE
+XILINX_DSP: G:/Xilinx/Vivado/2019.1/ids_lite/ISE
+XILINX_PLANAHEAD: G:/Xilinx/Vivado/2019.1
+XILINX_VIVADO: G:/Xilinx/Vivado/2019.1
+XILINX_VIVADO_HLS: G:/Xilinx/Vivado/2019.1
+
+
+GUI allocated memory:	128 MB
+GUI max memory:		3,072 MB
+Engine allocated memory: 568 MB
+
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+
+*/
+
+// TclEventType: START_GUI
+// Tcl Message: start_gui 
+// TclEventType: PROJECT_OPEN_DIALOG
+// aL (cl): Older Project Version: addNotify
+// HMemoryUtils.trashcanNow. Engine heap size: 568 MB. GUI used memory: 57 MB. Current time: 9/20/20, 11:22:30 AM SRET
+// WARNING: HEventQueue.dispatchEvent() is taking  1001 ms.
+// WARNING: HEventQueue.dispatchEvent() is taking  1002 ms.
+// WARNING: HEventQueue.dispatchEvent() is taking  1002 ms.
+selectRadioButton(PAResourceTtoZ.UpgradeProjectDialog_OPEN_PROJECT_IN_READ_ONLY_MODE, "Open project in read-only mode"); // a (Q, aL)
+selectRadioButton(PAResourceTtoZ.UpgradeProjectDialog_AUTOMATICALLY_UPGRADE_TO_CURRENT, "Automatically upgrade to the current version"); // a (Q, aL)
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a (aL)
+// Opening Vivado Project: F:\Notes\CG3207\project\CG3207Lab\verilog_lab2\project_1.xpr. Version: Vivado v2018.2 
+// by (cl):  Open Project : addNotify
+dismissDialog("Older Project Version"); // aL (cl)
+// TclEventType: DEBUG_PROBE_SET_CHANGE
+// Tcl Message: open_project F:/Notes/CG3207/project/CG3207Lab/verilog_lab2/project_1.xpr 
+// TclEventType: MSGMGR_MOVEMSG
+// TclEventType: FILE_SET_NEW
+// TclEventType: RUN_CURRENT
+// TclEventType: PROJECT_DASHBOARD_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: FILE_SET_NEW
+// TclEventType: PROJECT_NEW
+// Tcl Message: open_project F:/Notes/CG3207/project/CG3207Lab/verilog_lab2/project_1.xpr 
+// Tcl Message: INFO: [Project 1-313] Project file moved from 'D:/CG3207Lab/verilog_lab2' since last save. 
+// Tcl Message: Scanning sources... Finished scanning sources 
+// Tcl Message: INFO: [Project 1-230] Project 'project_1.xpr' upgraded for this version of Vivado. INFO: [IP_Flow 19-234] Refreshing IP repositories INFO: [IP_Flow 19-1704] No user IP repositories specified 
+// TclEventType: PROJECT_NEW
+// [GUI Memory]: 88 MB (+90108kb) [00:00:44]
+// [Engine Memory]: 571 MB (+447502kb) [00:00:44]
+// [GUI Memory]: 106 MB (+13696kb) [00:00:45]
+// [Engine Memory]: 646 MB (+47918kb) [00:00:46]
+// WARNING: HEventQueue.dispatchEvent() is taking  2373 ms.
+// Tcl Message: INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'G:/Xilinx/Vivado/2019.1/data/ip'. 
+// HMemoryUtils.trashcanNow. Engine heap size: 646 MB. GUI used memory: 60 MB. Current time: 9/20/20, 11:23:02 AM SRET
+// Project name: project_1; location: F:/Notes/CG3207/project/CG3207Lab/verilog_lab2; part: xc7a100tcsg324-1
+// Tcl Message: open_project: Time (s): cpu = 00:00:06 ; elapsed = 00:00:08 . Memory (MB): peak = 672.105 ; gain = 67.563 
+dismissDialog("Open Project"); // by (cl)
+// Tcl Message: update_compile_order -fileset sources_1 
+// Elapsed time: 23 seconds
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, TOP(arch_TOP) (TOP_Nexys.vhd)]", 1); // B (F, cl)
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, TOP(arch_TOP) (TOP_Nexys.vhd), Wrapper1 : Wrapper (Wrapper.v)]", 2); // B (F, cl)
+// Elapsed time: 12 seconds
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, TOP(arch_TOP) (TOP_Nexys.vhd), Wrapper1 : Wrapper (Wrapper.v), ARM1 : ARM (ARM.v)]", 3); // B (F, cl)
+// PAResourceOtoP.PAViews_PROJECT_SUMMARY: Project Summary: close view
+closeView(PAResourceOtoP.PAViews_PROJECT_SUMMARY, "Project Summary"); // v
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, TOP(arch_TOP) (TOP_Nexys.vhd), Wrapper1 : Wrapper (Wrapper.v), ARM1 : ARM (ARM.v), Decoder1 : Decoder (Decoder.v)]", 6, false); // B (F, cl)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, TOP(arch_TOP) (TOP_Nexys.vhd), Wrapper1 : Wrapper (Wrapper.v), ARM1 : ARM (ARM.v), Decoder1 : Decoder (Decoder.v)]", 6, false, false, false, false, false, true); // B (F, cl) - Double Click
+// Elapsed time: 276 seconds
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, TOP(arch_TOP) (TOP_Nexys.vhd), Wrapper1 : Wrapper (Wrapper.v), ARM1 : ARM (ARM.v), CondLogic1 : CondLogic (CondLogic.v)]", 7, false); // B (F, cl)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, TOP(arch_TOP) (TOP_Nexys.vhd), Wrapper1 : Wrapper (Wrapper.v), ARM1 : ARM (ARM.v), CondLogic1 : CondLogic (CondLogic.v)]", 7, false, false, false, false, false, true); // B (F, cl) - Double Click
+// [GUI Memory]: 114 MB (+3338kb) [00:06:11]
+// Elapsed time: 275 seconds
+selectCodeEditor("CondLogic.v", 94, 371); // cl (w, cl)
+selectCodeEditor("CondLogic.v", 94, 371, false, false, false, false, true); // cl (w, cl) - Double Click
+selectCodeEditor("CondLogic.v", 102, 391); // cl (w, cl)
+selectCodeEditor("CondLogic.v", 102, 391, false, false, false, false, true); // cl (w, cl) - Double Click
+selectCodeEditor("CondLogic.v", 102, 409); // cl (w, cl)
+selectCodeEditor("CondLogic.v", 102, 409, false, false, false, false, true); // cl (w, cl) - Double Click
+selectCodeEditor("CondLogic.v", 101, 423); // cl (w, cl)
+selectCodeEditor("CondLogic.v", 101, 423, false, false, false, false, true); // cl (w, cl) - Double Click
+// Elapsed time: 55 seconds
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, TOP(arch_TOP) (TOP_Nexys.vhd), Wrapper1 : Wrapper (Wrapper.v), ARM1 : ARM (ARM.v), Decoder1 : Decoder (Decoder.v)]", 6, false); // B (F, cl)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, TOP(arch_TOP) (TOP_Nexys.vhd), Wrapper1 : Wrapper (Wrapper.v), ARM1 : ARM (ARM.v), Decoder1 : Decoder (Decoder.v)]", 6, false, false, false, false, false, true); // B (F, cl) - Double Click
+// Elapsed time: 86 seconds
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, TOP(arch_TOP) (TOP_Nexys.vhd), Wrapper1 : Wrapper (Wrapper.v), ARM1 : ARM (ARM.v), CondLogic1 : CondLogic (CondLogic.v)]", 7, false); // B (F, cl)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, TOP(arch_TOP) (TOP_Nexys.vhd), Wrapper1 : Wrapper (Wrapper.v), ARM1 : ARM (ARM.v), CondLogic1 : CondLogic (CondLogic.v)]", 7, false, false, false, false, false, true); // B (F, cl) - Double Click
+// Elapsed time: 111 seconds
+selectCodeEditor("CondLogic.v", 124, 296); // cl (w, cl)
+// Elapsed time: 95 seconds
+selectCodeEditor("CondLogic.v", 211, 567); // cl (w, cl)
+selectCodeEditor("CondLogic.v", 140, 541); // cl (w, cl)
+selectCodeEditor("CondLogic.v", 106, 527); // cl (w, cl)
+selectCodeEditor("CondLogic.v", 59, 527); // cl (w, cl)
+// Elapsed time: 321 seconds
+selectCodeEditor("CondLogic.v", 66, 609); // cl (w, cl)
+// Elapsed time: 123 seconds
+selectCodeEditor("CondLogic.v", 149, 756); // cl (w, cl)
+// Elapsed time: 71 seconds
+selectCodeEditor("CondLogic.v", 226, 755); // cl (w, cl)
+// Elapsed time: 39 seconds
+selectCodeEditor("CondLogic.v", 187, 750); // cl (w, cl)
+// Elapsed time: 14 seconds
+selectCodeEditor("CondLogic.v", 223, 751); // cl (w, cl)
+// Elapsed time: 34 seconds
+selectCodeEditor("CondLogic.v", 141, 698); // cl (w, cl)
+// Elapsed time: 11 seconds
+selectCodeEditor("CondLogic.v", 252, 699); // cl (w, cl)
+selectCodeEditor("CondLogic.v", 256, 690); // cl (w, cl)
+selectCodeEditor("CondLogic.v", 234, 697); // cl (w, cl)
+selectCodeEditor("CondLogic.v", 234, 697); // cl (w, cl)
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Elapsed time: 43 seconds
+selectCodeEditor("CondLogic.v", 93, 280); // cl (w, cl)
+// Elapsed time: 14 seconds
+selectCodeEditor("CondLogic.v", 141, 101); // cl (w, cl)
+selectCodeEditor("CondLogic.v", 154, 104); // cl (w, cl)
+// Elapsed time: 137 seconds
+selectCodeEditor("CondLogic.v", 82, 532); // cl (w, cl)
+selectCodeEditor("CondLogic.v", 231, 503); // cl (w, cl)
+// Elapsed time: 17 seconds
+selectCodeEditor("CondLogic.v", 120, 712); // cl (w, cl)
+// HMemoryUtils.trashcanNow. Engine heap size: 652 MB. GUI used memory: 62 MB. Current time: 9/20/20, 11:53:05 AM SRET
+// Elapsed time: 111 seconds
+selectCodeEditor("CondLogic.v", 56, 745); // cl (w, cl)
+// Elapsed time: 39 seconds
+selectCodeEditor("CondLogic.v", 119, 754); // cl (w, cl)
+selectCodeEditor("CondLogic.v", 186, 791); // cl (w, cl)
+selectCodeEditor("CondLogic.v", 156, 746); // cl (w, cl)
+selectCodeEditor("CondLogic.v", 280, 796); // cl (w, cl)
+selectCodeEditor("CondLogic.v", 163, 775); // cl (w, cl)
+selectCodeEditor("CondLogic.v", 235, 753); // cl (w, cl)
+// Elapsed time: 13 seconds
+selectCodeEditor("CondLogic.v", 162, 751); // cl (w, cl)
+// Elapsed time: 72 seconds
+selectCodeEditor("CondLogic.v", 100, 787); // cl (w, cl)
+selectCodeEditor("CondLogic.v", 100, 787, false, false, false, true, false); // cl (w, cl) - Popup Trigger
+selectCodeEditor("CondLogic.v", 69, 787); // cl (w, cl)
+selectCodeEditor("CondLogic.v", 232, 807); // cl (w, cl)
+selectCodeEditor("CondLogic.v", 171, 787); // cl (w, cl)
+selectCodeEditor("CondLogic.v", 245, 777); // cl (w, cl)
+selectCodeEditor("CondLogic.v", 103, 615); // cl (w, cl)
+selectCodeEditor("CondLogic.v", 123, 645); // cl (w, cl)
+selectCodeEditor("CondLogic.v", 106, 620); // cl (w, cl)
+selectCodeEditor("CondLogic.v", 236, 700); // cl (w, cl)
+selectCodeEditor("CondLogic.v", 154, 684); // cl (w, cl)
+selectCodeEditor("CondLogic.v", 198, 672); // cl (w, cl)
+// Elapsed time: 20 seconds
+selectCodeEditor("CondLogic.v", 123, 716); // cl (w, cl)
+selectCodeEditor("CondLogic.v", 141, 693); // cl (w, cl)
+// Elapsed time: 29 seconds
+selectCodeEditor("CondLogic.v", 24, 635); // cl (w, cl)
+selectCodeEditor("CondLogic.v", 63, 642); // cl (w, cl)
+typeControlKey((HResource) null, "CondLogic.v", 'c'); // cl (w, cl)
+selectCodeEditor("CondLogic.v", 58, 658); // cl (w, cl)
+selectCodeEditor("CondLogic.v", 77, 646); // cl (w, cl)
+typeControlKey((HResource) null, "CondLogic.v", 'v'); // cl (w, cl)
+selectCodeEditor("CondLogic.v", 74, 597); // cl (w, cl)
+selectCodeEditor("CondLogic.v", 231, 648); // cl (w, cl)
+// Elapsed time: 11 seconds
+selectCodeEditor("CondLogic.v", 95, 649); // cl (w, cl)
+// Elapsed time: 12 seconds
+selectCodeEditor("CondLogic.v", 112, 655); // cl (w, cl)
+selectCodeEditor("CondLogic.v", 137, 657); // cl (w, cl)
+selectCodeEditor("CondLogic.v", 219, 719); // cl (w, cl)
+selectCodeEditor("CondLogic.v", 138, 747); // cl (w, cl)
+selectCodeEditor("CondLogic.v", 92, 478); // cl (w, cl)
+selectCodeEditor("CondLogic.v", 97, 486); // cl (w, cl)
+selectCodeEditor("CondLogic.v", 95, 751); // cl (w, cl)
+// Elapsed time: 14 seconds
+selectCodeEditor("CondLogic.v", 104, 486); // cl (w, cl)
+selectCodeEditor("CondLogic.v", 103, 743); // cl (w, cl)
+selectCodeEditor("CondLogic.v", 139, 748); // cl (w, cl)
+selectCodeEditor("CondLogic.v", 78, 614); // cl (w, cl)
+selectCodeEditor("CondLogic.v", 81, 628); // cl (w, cl)
+selectCodeEditor("CondLogic.v", 78, 715); // cl (w, cl)
+selectCodeEditor("CondLogic.v", 79, 725); // cl (w, cl)
+selectCodeEditor("CondLogic.v", 159, 738); // cl (w, cl)
+selectCodeEditor("CondLogic.v", 155, 613); // cl (w, cl)
+selectCodeEditor("CondLogic.v", 201, 732); // cl (w, cl)
+selectCodeEditor("CondLogic.v", 137, 751); // cl (w, cl)
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Elapsed time: 64 seconds
+selectCodeEditor("CondLogic.v", 292, 569); // cl (w, cl)
+// [GUI Memory]: 121 MB (+1430kb) [00:39:08]
+// HMemoryUtils.trashcanNow. Engine heap size: 654 MB. GUI used memory: 59 MB. Current time: 9/20/20, 12:23:05 PM SRET
+// HMemoryUtils.trashcanNow. Engine heap size: 654 MB. GUI used memory: 59 MB. Current time: 9/20/20, 12:53:06 PM SRET
+// HMemoryUtils.trashcanNow. Engine heap size: 654 MB. GUI used memory: 58 MB. Current time: 9/20/20, 1:23:06 PM SRET
+// HMemoryUtils.trashcanNow. Engine heap size: 654 MB. GUI used memory: 58 MB. Current time: 9/20/20, 1:53:06 PM SRET
+// HMemoryUtils.trashcanNow. Engine heap size: 654 MB. GUI used memory: 51 MB. Current time: 9/20/20, 2:23:07 PM SRET
+// HMemoryUtils.trashcanNow. Engine heap size: 654 MB. GUI used memory: 51 MB. Current time: 9/20/20, 2:53:07 PM SRET
+// Elapsed time: 10386 seconds
+selectCodeEditor("CondLogic.v", 102, 753); // cl (w, cl)
+selectCodeEditor("CondLogic.v", 117, 778); // cl (w, cl)
+selectCodeEditor("CondLogic.v", 53, 764); // cl (w, cl)
+selectCodeEditor("CondLogic.v", 52, 776); // cl (w, cl)
+// Elapsed time: 59 seconds
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "Decoder.v", 0); // k (j, cl)
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "CondLogic.v", 1); // k (j, cl)
+// Elapsed time: 109 seconds
+selectCodeEditor("CondLogic.v", 145, 551); // cl (w, cl)
+selectCodeEditor("CondLogic.v", 20, 171); // cl (w, cl)
+// Elapsed time: 43 seconds
+selectCodeEditor("CondLogic.v", 71, 213); // cl (w, cl)
+selectCodeEditor("CondLogic.v", 235, 396); // cl (w, cl)
+// Elapsed time: 16 seconds
+selectCodeEditor("CondLogic.v", 103, 409); // cl (w, cl)
+// Elapsed time: 15 seconds
+selectCodeEditor("CondLogic.v", 256, 340); // cl (w, cl)
+// Elapsed time: 16 seconds
+selectCodeEditor("CondLogic.v", 85, 356); // cl (w, cl)
+// Elapsed time: 75 seconds
+selectCodeEditor("CondLogic.v", 67, 465); // cl (w, cl)
+selectCodeEditor("CondLogic.v", 113, 487); // cl (w, cl)
+// Elapsed time: 50 seconds
+selectCodeEditor("CondLogic.v", 109, 449); // cl (w, cl)
+selectCodeEditor("CondLogic.v", 17, 413); // cl (w, cl)
+// Elapsed time: 26 seconds
+selectCodeEditor("CondLogic.v", 67, 765); // cl (w, cl)
+selectCodeEditor("CondLogic.v", 66, 780); // cl (w, cl)
+selectCodeEditor("CondLogic.v", 64, 765); // cl (w, cl)
+selectCodeEditor("CondLogic.v", 63, 778); // cl (w, cl)
+selectCodeEditor("CondLogic.v", 63, 785); // cl (w, cl)
+selectCodeEditor("CondLogic.v", 71, 787); // cl (w, cl)
+selectCodeEditor("CondLogic.v", 70, 774); // cl (w, cl)
+// Elapsed time: 141 seconds
+selectCodeEditor("CondLogic.v", 59, 348); // cl (w, cl)
+selectCodeEditor("CondLogic.v", 360, 370); // cl (w, cl)
+// Elapsed time: 125 seconds
+selectCodeEditor("CondLogic.v", 66, 598); // cl (w, cl)
+selectCodeEditor("CondLogic.v", 121, 598); // cl (w, cl)
+selectCodeEditor("CondLogic.v", 121, 598, false, false, false, false, true); // cl (w, cl) - Double Click
+selectCodeEditor("CondLogic.v", 121, 598); // cl (w, cl)
+// HMemoryUtils.trashcanNow. Engine heap size: 654 MB. GUI used memory: 51 MB. Current time: 9/20/20, 3:23:07 PM SRET
+// Elapsed time: 1832 seconds
+selectCodeEditor("CondLogic.v", 480, 820); // cl (w, cl)
+// Elapsed time: 733 seconds
+selectCodeEditor("CondLogic.v", 117, 421); // cl (w, cl)
+selectCodeEditor("CondLogic.v", 142, 341); // cl (w, cl)
+selectCodeEditor("CondLogic.v", 142, 346); // cl (w, cl)
+// Elapsed time: 10 seconds
+selectCodeEditor("CondLogic.v", 114, 352); // cl (w, cl)
+// Elapsed time: 26 seconds
+selectCodeEditor("CondLogic.v", 100, 663); // cl (w, cl)
+selectCodeEditor("CondLogic.v", 102, 653); // cl (w, cl)
+// Elapsed time: 29 seconds
+selectCodeEditor("CondLogic.v", 95, 633); // cl (w, cl)
+selectCodeEditor("CondLogic.v", 95, 633, false, false, false, false, true); // cl (w, cl) - Double Click
+selectCodeEditor("CondLogic.v", 76, 828); // cl (w, cl)
+selectCodeEditor("CondLogic.v", 75, 825, false, false, false, false, true); // cl (w, cl) - Double Click
+selectCodeEditor("CondLogic.v", 40, 240); // cl (w, cl)
+selectCodeEditor("CondLogic.v", 40, 240, false, false, false, false, true); // cl (w, cl) - Double Click
+selectCodeEditor("CondLogic.v", 289, 720); // cl (w, cl)
+selectCodeEditor("CondLogic.v", 229, 710); // cl (w, cl)
+// Elapsed time: 82 seconds
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "Decoder.v", 0); // k (j, cl)
+// HMemoryUtils.trashcanNow. Engine heap size: 654 MB. GUI used memory: 51 MB. Current time: 9/20/20, 3:53:07 PM SRET
+// Elapsed time: 181 seconds
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "CondLogic.v", 1); // k (j, cl)
+selectCodeEditor("CondLogic.v", 89, 601); // cl (w, cl)
+selectCodeEditor("CondLogic.v", 89, 601, false, false, false, false, true); // cl (w, cl) - Double Click
+// Elapsed time: 20 seconds
+selectCodeEditor("CondLogic.v", 95, 672); // cl (w, cl)
+// Elapsed time: 95 seconds
+selectCodeEditor("CondLogic.v", 97, 767); // cl (w, cl)
+// Elapsed time: 28 seconds
+selectCodeEditor("CondLogic.v", 171, 499); // cl (w, cl)
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Elapsed time: 13 seconds
+selectCodeEditor("CondLogic.v", 76, 563); // cl (w, cl)
+selectCodeEditor("CondLogic.v", 76, 563, false, false, false, false, true); // cl (w, cl) - Double Click
+selectCodeEditor("CondLogic.v", 101, 577); // cl (w, cl)
+selectCodeEditor("CondLogic.v", 101, 577, false, false, false, false, true); // cl (w, cl) - Double Click
+// Elapsed time: 34 seconds
+selectCodeEditor("CondLogic.v", 253, 485); // cl (w, cl)
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "Decoder.v", 0); // k (j, cl)
+// Elapsed time: 171 seconds
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "CondLogic.v", 1); // k (j, cl)
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Implementation, Run Implementation]", 17, false); // u (O, cl)
+// Run Command: PAResourceCommand.PACommandNames_RUN_IMPLEMENTATION
+selectButton("OptionPane.button", "Cancel"); // JButton (A, G)
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Implementation, Run Implementation]", 17, false); // u (O, cl)
+// Run Command: PAResourceCommand.PACommandNames_RUN_IMPLEMENTATION
+// f (cl): Launch Runs: addNotify
+selectButton("OptionPane.button", "OK"); // JButton (A, G)
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a (f)
+// by (cl):  Starting Design Runs : addNotify
+dismissDialog("Launch Runs"); // f (cl)
+// Tcl Message: launch_runs impl_1 -jobs 8 
+// TclEventType: RUN_LAUNCH
+// TclEventType: RUN_MODIFY
+// Tcl Message: [Sun Sep 20 16:01:33 2020] Launched synth_1... Run output will be captured here: F:/Notes/CG3207/project/CG3207Lab/verilog_lab2/project_1.runs/synth_1/runme.log [Sun Sep 20 16:01:33 2020] Launched impl_1... Run output will be captured here: F:/Notes/CG3207/project/CG3207Lab/verilog_lab2/project_1.runs/impl_1/runme.log 
+// 'c' command handler elapsed time: 3 seconds
+dismissDialog("Starting Design Runs"); // by (cl)
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// ah (cl): Implementation Completed: addNotify
+// Elapsed time: 104 seconds
+selectButton(RDIResource.BaseDialog_CANCEL, "Cancel"); // a (ah)
+dismissDialog("Implementation Completed"); // ah (cl)
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Implementation, Open Implemented Design]", 18, true); // u (O, cl) - Node
+// Run Command: PAResourceCommand.PACommandNames_GOTO_IMPLEMENTED_DESIGN
+// by (cl):  Open Implemented Design : addNotify
+// Tcl Message: open_run impl_1 
+selectButton(RDIResource.ProgressDialog_CANCEL, "Cancel"); // a (by)
+// HMemoryUtils.trashcanNow. Engine heap size: 890 MB. GUI used memory: 52 MB. Current time: 9/20/20, 4:03:23 PM SRET
+// TclEventType: DESIGN_CLOSE
+// TclEventType: DESIGN_NEW_FAILED
+// Tcl Message: INFO: [Device 21-403] Loading part xc7a100tcsg324-1 INFO: [Common 17-41] Interrupt caught. Command should exit soon. INFO: [Netlist 29-17] Analyzing 10 Unisim elements for replacement INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds INFO: [Project 1-479] Netlist was created with Vivado 2019.1 INFO: [Common 17-344] 'open_run' was cancelled 
+// CommandFailedException: ERROR: [Common 17-69] Command failed:  
+// [Engine Memory]: 892 MB (+224546kb) [04:41:08]
+// 'dR' command handler elapsed time: 5 seconds
+dismissDialog("Open Implemented Design"); // by (cl)
