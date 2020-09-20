@@ -36,6 +36,8 @@ module Decoder(
     input [3:0] Rd,
     input [1:0] Op,
     input [5:0] Funct,
+    //DP: Funct[0] = S-bit, Funct[4:1] = cmd, Funct[5] = I-bit
+    //MI: Funct[0] = L-bit, [1] = L-bit, [2] = B-bit, [3] = U-bit, [4] = P-bit, [5] = I-bit
     output PCS,
     output RegW,
     output MemW,
@@ -51,6 +53,63 @@ module Decoder(
     wire ALUOp ;
     reg [9:0] controls ;
     //<extra signals, if any>
+    
+    assign RegW = (Op == 00) || ((Op == 01) && (Funct[0] == 1)); //All DP instructions and LDR
+    
+    assign PCS = ((Rd == 4'b1111) && RegW) || Op == 10; //Rd = 15 and needs to be written or Branch instruction
+    
+    assign MemW = (Op == 01) && (Funct[0] == 0); //Only for STR instruction
+    
+    assign MemtoReg = (Op == 01) && (Funct[0] == 1); //Only for LDR intrctuion
+    
+    assign ALUSrc = ((Op == 00) && (Funct[5] == 0)) ? 0 : 1; //Not for DP intruction with register Src2
+    
+    assign ImmSrc = Op; //Choose number of bits for immediate
+    
+    assign RegSrc = (Op == 01) ? 10 : (Op == 10 ? 01 : 00);
+    
+    assign ALUOp = (Op == 00) ? 1 : 0;
+    
+    always@(Rd, Op, Funct)//FlagW[1:0]
+    begin
+        if(ALUOp == 0)
+        begin
+            FlagW <= 00;
+        end
+        else
+        begin
+            if(Funct[0] == 1) //S-bit = 1
+            begin
+                case(Funct[4:1]) //cmd
+                    4'b0100: FlagW <= 11;
+                    4'b0010: FlagW <= 11;
+                    4'b0000: FlagW <= 10;
+                    4'b1100: FlagW <= 10;
+                endcase
+            end
+            else //S-bit = 0
+            begin
+               FlagW <= 00;
+            end
+        end
+    end
+    
+    always@(Rd, Op, Funct)//ALUControl[1:0]
+    begin
+        if(ALUOp == 0)
+        begin
+            ALUControl <= 00;
+        end
+        else
+        begin
+            case(Funct[4:1]) //cmd
+                4'b0100: ALUControl <= 00;
+                4'b0010: ALUControl <= 01;
+                4'b0000: ALUControl <= 10;
+                4'b1100: ALUControl <= 11;
+            endcase
+        end
+    end
     
 endmodule
 
