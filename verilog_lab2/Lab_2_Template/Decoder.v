@@ -56,7 +56,7 @@ module Decoder(
     
     assign RegW = (Op == 00) || ((Op == 01) && (Funct[0] == 1)); //All DP instructions and LDR
     
-    assign PCS = ((Rd == 4'b1111) && RegW) || Op == 10; //Rd = 15 and needs to be written or Branch instruction
+    assign PCS = ((Rd == 4'b1111) && RegW) || Op == 10; //PC (R15) is written by an instruction or branch
     
     assign MemW = (Op == 01) && (Funct[0] == 0); //Only for STR instruction
     
@@ -68,7 +68,7 @@ module Decoder(
     
     assign RegSrc = (Op == 01) ? 10 : (Op == 10 ? 01 : 00);
     
-    assign ALUOp = (Op == 00) ? 1 : 0;
+    assign ALUOp = (Op == 00) ? 1 : 0; //1 for DP, 0 for others
     
     always@(Rd, Op, Funct)//FlagW[1:0]
     begin
