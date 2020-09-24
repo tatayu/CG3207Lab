@@ -76,10 +76,10 @@ module CondLogic(
         endcase   
     end
     
-    assign PCSrc = PCS && CondEx;
-    assign RegWrite = RegW && CondEx;
-    assign MemWrite = MemW && CondEx;
-    assign FlagWrite = CondEx && FlagW;
+    assign PCSrc = PCS & CondEx;
+    assign RegWrite = RegW & CondEx;
+    assign MemWrite = MemW & CondEx;
+    assign FlagWrite = CondEx & FlagW;
     
     always@(posedge CLK)
     begin

@@ -122,11 +122,12 @@ module ARM(
     
     //Register File
     assign WE3 = RegWrite;
-    assign A1 = RegSrc[0] == 1 ? 4'b1111 : Instr[19:16]; //R15 or Rn
-    assign A2 = RegSrc[1] == 1 ? Instr[15:12] : Instr[3:0]; //Rd(for STR) or Rm
+    assign A1 = (RegSrc[0] == 1) ? 4'b1111 : Instr[19:16]; //R15 or Rn
+    assign A2 = (RegSrc[1] == 1) ? Instr[15:12] : Instr[3:0]; //Rd(for STR) or Rm
     assign A3 = Instr[15:12];
     assign WD3 = Result;
     assign R15 = PCPlus8;
+    assign WriteData = RD2;
     
     //Extend Module Signals
     assign InstrImm = Instr[23:0];
@@ -146,7 +147,8 @@ module ARM(
     //PC Signals
     assign PCPlus4 = PC + 4;
     assign PCPlus8 = PCPlus4 + 4;
-    assign Result = MemtoReg == 1 ? ReadData : ALUResult;
+    assign Result = (MemtoReg == 1) ? ReadData : ALUResult;
+    assign PC_IN = (PCSrc == 1) ? Result : PCPlus4;
     
     // Instantiate RegFile
     RegFile RegFile1( 

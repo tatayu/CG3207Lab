@@ -88,7 +88,7 @@ reg [31:0] DATA_VAR_MEM     [0:127]; // data (variable) memory
 //----------------------------------------------------------------
 // Instruction Memory
 //----------------------------------------------------------------
-reg [6:0] i = 0;
+reg [9:0] i = 0;
 initial begin
         INSTR_MEM[0] = 32'hE59F11F8; 
         INSTR_MEM[1] = 32'hE59F21F8; 
@@ -129,6 +129,14 @@ end
 // Data (Variable) Memory
 //----------------------------------------------------------------
 initial begin
+        DATA_VAR_MEM[0] = 32'h00000C00;
+        DATA_VAR_MEM[1] = 32'h00000C04;
+        DATA_VAR_MEM[2] = 32'h00000C08;
+        DATA_VAR_MEM[3] = 32'h00000C0C;
+        DATA_VAR_MEM[4] = 32'h0x4;
+        for(i = 5; i < 128; i = i+1) begin
+            DATA_VAR_MEM[i] = 32'h0;
+        end
 end
 
 //----------------------------------------------------------------
