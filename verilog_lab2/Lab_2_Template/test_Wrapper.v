@@ -41,26 +41,7 @@ module test_Wrapper #(
 	// STIMULI
     initial
     begin
-		RESET = 1; #10; RESET = 0; //hold reset state for 10 ns.
-		CONSOLE_OUT_ready = 1'h1; // ok to keep it high continously in the testbench. In reality, it will be high only if UART is ready to send a data to PC
-        CONSOLE_IN = 8'h50;// 'P'. Will be read and ignored by the processor
-        CONSOLE_IN_valid = 1'h1;
-        wait(CONSOLE_IN_ack);
-        wait(~CONSOLE_IN_ack);
-        CONSOLE_IN_valid = 1'h0;
-        #105;
-        CONSOLE_IN = 8'h41;// 'A'
-        CONSOLE_IN_valid = 1'h1;
-        wait(CONSOLE_IN_ack);
-        wait(~CONSOLE_IN_ack);
-		CONSOLE_IN_valid = 1'h0;
-        #105;
-        CONSOLE_IN = 8'h0D;// '\r'
-        CONSOLE_IN_valid = 1'h1;
-        wait(CONSOLE_IN_ack); // should print "Welcome to CG3207" following this.
-        wait(~CONSOLE_IN_ack);
-        CONSOLE_IN_valid = 1'h0;
-		//insert rest of the stimuli here
+		
     end
 	
 	// GENERATE CLOCK       
