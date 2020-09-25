@@ -54,42 +54,42 @@ module Decoder(
     reg [9:0] controls ;
     //<extra signals, if any>
     
-    assign RegW = (Op == 00) || ((Op == 01) && (Funct[0] == 1)); //All DP instructions and LDR
+    assign RegW = (Op == 2'b00) || ((Op == 2'b01) && (Funct[0] == 1)); //All DP instructions and LDR
     
-    assign PCS = ((Rd == 4'b1111) && RegW) || Op == 10; //PC (R15) is written by an instruction or branch
+    assign PCS = ((Rd == 4'b1111) && RegW) || Op == 2'b10; //PC (R15) is written by an instruction or branch
     
-    assign MemW = (Op == 01) && (Funct[0] == 0); //Only for STR instruction
+    assign MemW = (Op == 2'b01) && (Funct[0] == 0); //Only for STR instruction
     
-    assign MemtoReg = (Op == 01) && (Funct[0] == 1); //Only for LDR intrctuion
+    assign MemtoReg = (Op == 2'b01) && (Funct[0] == 1); //Only for LDR intrctuion
     
-    assign ALUSrc = ((Op == 00) && (Funct[5] == 0)) ? 0 : 1; //Not for DP intruction with register Src2
+    assign ALUSrc = ((Op == 2'b00) && (Funct[5] == 0)) ? 0 : 1; //Not for DP intruction with register Src2
     
     assign ImmSrc = Op; //Choose number of bits for immediate
     
-    assign RegSrc = (Op == 01) ? 10 : (Op == 10 ? 01 : 00);
+    assign RegSrc = (Op == 2'b01) ? 10 : (Op == 2'b10 ? 2'b01 : 2'b00);
     
-    assign ALUOp = (Op == 00) ? 1 : 0; //1 for DP, 0 for others
+    assign ALUOp = (Op == 2'b00) ? 1 : 0; //1 for DP, 0 for others
     
     always@(Rd, Op, Funct)//FlagW[1:0]
     begin
         if(ALUOp == 0)
         begin
-            FlagW <= 00;
+            FlagW <= 2'b00;
         end
         else
         begin
             if(Funct[0] == 1) //S-bit = 1
             begin
                 case(Funct[4:1]) //cmd
-                    4'b0100: FlagW <= 11;
-                    4'b0010: FlagW <= 11;
-                    4'b0000: FlagW <= 10;
-                    4'b1100: FlagW <= 10;
+                    4'b0100: FlagW <= 2'b11; //ADD
+                    4'b0010: FlagW <= 2'b11; //SUB
+                    4'b0000: FlagW <= 2'b10; //AND
+                    4'b1100: FlagW <= 2'b10; //ORR
                 endcase
             end
             else //S-bit = 0
             begin
-               FlagW <= 00;
+               FlagW <= 2'b00;
             end
         end
     end
@@ -98,15 +98,15 @@ module Decoder(
     begin
         if(ALUOp == 0)
         begin
-            ALUControl <= 00;
+            ALUControl <= 2'b00;
         end
         else
         begin
             case(Funct[4:1]) //cmd
-                4'b0100: ALUControl <= 00;
-                4'b0010: ALUControl <= 01;
-                4'b0000: ALUControl <= 10;
-                4'b1100: ALUControl <= 11;
+                4'b0100: ALUControl <= 2'b00;
+                4'b0010: ALUControl <= 2'b01;
+                4'b0000: ALUControl <= 2'b10;
+                4'b1100: ALUControl <= 2'b11;
             endcase
         end
     end
