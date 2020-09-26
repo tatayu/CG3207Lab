@@ -70,6 +70,8 @@ module Decoder(
     
     assign ALUOp = (Op == 2'b00) ? 1 : 0; //1 for DP, 0 for others
     
+    assign NoWrite = (Op == 2'b00) && (Funct[4:1] == 4'b1010 || Funct[4:1] == 4'b1011) && (Funct[0] == 1); //for CMP
+    
     always@(Rd, Op, Funct)//FlagW[1:0]
     begin
         if(ALUOp == 0)
@@ -85,6 +87,8 @@ module Decoder(
                     4'b0010: FlagW <= 2'b11; //SUB
                     4'b0000: FlagW <= 2'b10; //AND
                     4'b1100: FlagW <= 2'b10; //ORR
+                    4'b1010: FlagW <= 2'b11; //CMP
+                    4'b1011: FlagW <= 2'b11; //CMN
                 endcase
             end
             else //S-bit = 0
@@ -96,17 +100,29 @@ module Decoder(
     
     always@(Rd, Op, Funct)//ALUControl[1:0]
     begin
-        if(ALUOp == 0)
+        if(ALUOp == 0) //Other Instruction
         begin
-            ALUControl <= 2'b00;
+            if(Op == 2'b01)//Memory Instruction
+            begin
+                case(Funct[3])
+                    1'b1: ALUControl <= 2'b00; //ADD
+                    1'b0: ALUControl <= 2'b01; //SUB
+                endcase
+            end
+            else
+            begin
+                ALUControl <= 2'b00;
+            end
         end
-        else
+        else //ALUOp == 1 DP Instruction
         begin
             case(Funct[4:1]) //cmd
-                4'b0100: ALUControl <= 2'b00;
-                4'b0010: ALUControl <= 2'b01;
-                4'b0000: ALUControl <= 2'b10;
-                4'b1100: ALUControl <= 2'b11;
+                4'b0100: ALUControl <= 2'b00; //ADD
+                4'b0010: ALUControl <= 2'b01; //SUB
+                4'b0000: ALUControl <= 2'b10; //AND
+                4'b1100: ALUControl <= 2'b11; //ORR
+                4'b1010: ALUControl <= 2'b01; //CMP
+                4'b1011: ALUControl <= 2'b00; //CMN
             endcase
         end
     end

@@ -83,7 +83,7 @@ module ARM(
     //wire CLK ;
     wire PCS ;
     wire RegW ;
-    wire NoWrite ; //TODO: For CMP... will come back to it
+    wire NoWrite ;
     wire MemW ;
     wire [1:0] FlagW ;
     wire [3:0] Cond ;
@@ -142,13 +142,18 @@ module ARM(
     
     //ALU Signals
     assign Src_A = RD1;
-    assign Src_B = (ALUSrc == 0) ? RD2 : ExtImm;
+    assign Src_B = (ALUSrc == 0) ? ShOut : ExtImm;
     
     //PC Signals
     assign PCPlus4 = PC + 4;
     assign PCPlus8 = PCPlus4 + 4;
     assign Result = (MemtoReg == 1) ? ReadData : ALUResult;
     assign PC_IN = (PCSrc == 1) ? Result : PCPlus4;
+    
+    //Shifter Signals
+    assign Sh = Instr[6:5];
+    assign Shamt5 = Instr[11:7];
+    assign ShIn = RD2;
     
     // Instantiate RegFile
     RegFile RegFile1( 
