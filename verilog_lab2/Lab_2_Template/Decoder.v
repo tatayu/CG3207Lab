@@ -66,7 +66,7 @@ module Decoder(
     
     assign ImmSrc = Op; //Choose number of bits for immediate
     
-    assign RegSrc = (Op == 2'b01) ? 10 : (Op == 2'b10 ? 2'b01 : 2'b00);
+    assign RegSrc = (Op == 2'b01) ? 2'b10 : (Op == 2'b10 ? 2'b01 : 2'b00);
     
     assign ALUOp = (Op == 2'b00) ? 1 : 0; //1 for DP, 0 for others
     

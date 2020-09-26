@@ -76,22 +76,23 @@ module CondLogic(
         endcase   
     end
     
-    assign PCSrc = PCS & CondEx;
-    assign RegWrite = RegW & CondEx;
-    assign MemWrite = MemW & CondEx;
-    assign FlagWrite = CondEx & FlagW;
+    assign PCSrc = PCS && CondEx;
+    assign RegWrite = RegW && CondEx;
+    assign MemWrite = MemW && CondEx;
+    assign FlagWrite[0] = CondEx && FlagW[0];
+    assign FlagWrite[1] = CondEx && FlagW[1];
     
     always@(posedge CLK)
     begin
         if(FlagWrite[1] == 1'b1) 
         begin
-            N <= ALUFlags[3];
-            Z <= ALUFlags[2];
+            N = ALUFlags[3];
+            Z = ALUFlags[2];
         end
         else
         begin
-            N <= 0;
-            Z <= 0;
+            N = N;
+            Z = Z;
         end    
     end
         
@@ -99,13 +100,13 @@ module CondLogic(
     begin
         if(FlagWrite[0] == 1'b1) 
         begin
-            C <= ALUFlags[1];
-            V <= ALUFlags[0];
+            C = ALUFlags[1];
+            V = ALUFlags[0];
         end
         else
         begin
-            C <= 0;
-            V <= 0;
+            C = C;
+            V = V;
         end
     end
 
