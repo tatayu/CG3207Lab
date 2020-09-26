@@ -135,7 +135,7 @@ module ARM(
     //Decoder Signals
     assign Rd = Instr[15:12];
     assign Op = Instr[27:26];
-    assign Funct = (Op == 10) ? Instr[25:24] : Instr[25:20];
+    assign Funct = (Op == 2'b10) ? Instr[25:24] : Instr[25:20];
     
     //Conditional Logic Signals
     assign Cond = Instr[31:28];

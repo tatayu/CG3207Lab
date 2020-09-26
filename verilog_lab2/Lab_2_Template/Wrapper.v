@@ -97,10 +97,9 @@ initial begin
         INSTR_MEM[4] = 32'hE5814000; 
         INSTR_MEM[5] = 32'hE2533001; 
         INSTR_MEM[6] = 32'h1AFFFFFD; 
-        INSTR_MEM[7] = 32'hE3530000; 
-        INSTR_MEM[8] = 32'h0AFFFFF8; 
-        INSTR_MEM[9] = 32'hEAFFFFFE; 
-        for(i = 10; i < 128; i = i+1) begin 
+        INSTR_MEM[7] = 32'h0AFFFFF9; 
+        INSTR_MEM[8] = 32'hEAFFFFFE; 
+        for(i = 9; i < 128; i = i+1) begin 
             INSTR_MEM[i] = 32'h0; 
         end
 end
@@ -129,14 +128,7 @@ end
 // Data (Variable) Memory
 //----------------------------------------------------------------
 initial begin
-        DATA_VAR_MEM[0] = 32'h00000C00;
-        DATA_VAR_MEM[1] = 32'h00000C04;
-        DATA_VAR_MEM[2] = 32'h00000C08;
-        DATA_VAR_MEM[3] = 32'h00000C0C;
-        DATA_VAR_MEM[4] = 32'h0x4;
-        for(i = 5; i < 128; i = i+1) begin
-            DATA_VAR_MEM[i] = 32'h0;
-        end
+        
 end
 
 //----------------------------------------------------------------
