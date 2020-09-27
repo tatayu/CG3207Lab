@@ -72,7 +72,7 @@ module Decoder(
     
     assign NoWrite = (Op == 2'b00) && (Funct[4:1] == 4'b1010 || Funct[4:1] == 4'b1011) && (Funct[0] == 1); //for CMP
     
-    always@(Rd, Op, Funct)//FlagW[1:0]
+    always@(*)//FlagW[1:0]
     begin
         if(ALUOp == 0)
         begin
@@ -89,6 +89,7 @@ module Decoder(
                     4'b1100: FlagW <= 2'b10; //ORR
                     4'b1010: FlagW <= 2'b11; //CMP
                     4'b1011: FlagW <= 2'b11; //CMN
+                    default: FlagW <= 2'bxx; //unpredictable
                 endcase
             end
             else //S-bit = 0
@@ -98,16 +99,20 @@ module Decoder(
         end
     end
     
-    always@(Rd, Op, Funct)//ALUControl[1:0]
+    always@(*)//ALUControl[1:0]
     begin
         if(ALUOp == 0) //Other Instruction
         begin
             if(Op == 2'b01)//Memory Instruction
             begin
-                case(Funct[3])
-                    1'b1: ALUControl <= 2'b00; //ADD
-                    1'b0: ALUControl <= 2'b01; //SUB
-                endcase
+                if(Funct[3] == 1'b1)
+                begin
+                    ALUControl <= 2'b00; //ADD
+                end
+                else
+                begin
+                    ALUControl <= 2'b01; //SUB
+                end
             end
             else
             begin
@@ -123,6 +128,7 @@ module Decoder(
                 4'b1100: ALUControl <= 2'b11; //ORR
                 4'b1010: ALUControl <= 2'b01; //CMP
                 4'b1011: ALUControl <= 2'b00; //CMN
+                default: ALUControl <= 2'bxx; //unpredictable
             endcase
         end
     end
