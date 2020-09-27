@@ -20,11 +20,11 @@
 		LDR R3, SEVEN_SEG ; Load the address of SEVEN_SEG to R3 C18
 
 LOOP_ANDS
-		LDR R4, [R1] ; Load the value of DIPS 1010
+		LDR R4, [R1] ; Load the value of DIPS 1010 (A)
 		STR R4, [R1, #-4] ; Store the value of R4 into LEDS
 		STR R4, [R1, #20] ; Store the value of R4 into SEVEN_SEG
 		
-		LDR R5, DELAY_VAL ; Load the delay value to R5
+		LDR R5, DELAY_VAL ; Load the delay value to R5 (2)
 		STR R5, [R2] ; Store the value of R5 into LEDS
 		STR R5, [R3] ; Store the value of R5 into SEVEN_SEG
 		
@@ -36,42 +36,38 @@ LOOP_ANDS
 		STR R4, [R2] ; Store the value of R4 into LEDS
 		STR R4, [R3] ; Store the value of R4 into SEVEN_SEG
 		
-		ADD R6, R5, R4, LSR #2 ; Add back the delay counter to 2
+		ADD R6, R5, R4, LSR #2 ; R6 = 2 + 3 (1110 >> 2) (5)
 		STR R6, [R2] ; Store the value of R6 into LEDS
 		STR R6, [R3] ; Store the value of R6 into SEVEN_SEG
 		
 LOOP_SUBS
-		SUBS R5, R5, #1 ; Decrease the dalay counter by 1
+		SUBS R5, R5, #1 ; Decrease the dalay counter by 1 (1) (0)
 		STR R5, [R2] ; Store the value of R5 into LEDS
 		STR R5, [R3] ; Store the value of R5 into SEVEN_SEG
 		BNE LOOP_SUBS
 		
-		LDR R5, DELAY_VAL
-		;LDR R4, [R2, #4] ; R4 = 10 1010(A)
-		;ADD R5, R5, R4, LSR #2 ; Add back the delay counter to 2	
+		LDR R5, DELAY_VAL ; Load the delay value to R5 (2)
 		STR R5, [R2] ; Store the value of R5 into LEDS
 		STR R5, [R3] ; Store the value of R5 into SEVEN_SEG
 		
-		CMP R5, #2
-		STR R5, [R2] ; Store the value of R5 into LEDS
-		STR R5, [R3] ; Store the value of R5 into SEVEN_SEG
-		SUBSEQ R5, R5, #2
-		STR R5, [R2] ; Store the value of R5 into LEDS
-		STR R5, [R3] ; Store the value of R5 into SEVEN_SEG
-		ORREQ R5, R5, #2
+		CMP R5, #2 ; R5 unchanged (2)
 		STR R5, [R2] ; Store the value of R5 into LEDS
 		STR R5, [R3] ; Store the value of R5 into SEVEN_SEG
 		
-		CMN R5, #-2
-		ANDSEQ R5, R5, #0 ; R5 = 0
+		SUBSEQ R5, R5, #2 ; R5 = 2 - 2 (0)
+		STR R5, [R2] ; Store the value of R5 into LEDS
+		STR R5, [R3] ; Store the value of R5 into SEVEN_SEG
+		
+		ORREQ R5, R5, #2 ; R5 = 00|10 (2)
+		STR R5, [R2] ; Store the value of R5 into LEDS
+		STR R5, [R3] ; Store the value of R5 into SEVEN_SEG
+		
+		CMN R5, #-2 ; R5 unchanged (2)
+		ANDSEQ R5, R5, #0 ; R5 = 10&00 (0)
 		STR R5, [R2] ; Store the value of R5 into LEDS
 		STR R5, [R3] ; Store the value of R5 into SEVEN_SEG
 		BEQ LOOP_ANDS
 		
-	
-		; instead of the pseudo-instruction LDR	 R2, =variable1, use LDR R2, variable1_addr	and variable1_addr DCD variable1
-		; STR  R0, [R2]		; store using address of variable 1 as a pointer. *R2 = R0;
-		; STR  R0, [R2,#4] 	; *(R2+4) = R0;
 halt	
 		B    halt           ; infinite loop to halt computation. // A program should not "terminate" without an operating system to return control to
 							; keep halt	B halt as the last line of your code.
