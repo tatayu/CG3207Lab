@@ -41,7 +41,7 @@ module test_Wrapper #(
 	// STIMULI
     initial
     begin
-        DIP = 15; 
+        DIP = 10; 
     end 
 	
 	// GENERATE CLOCK       
