@@ -117,14 +117,31 @@ module ARM(
     wire [31:0] PCPlus8 ;
     wire [31:0] Result ;
     
+    //MUL and DIV signals
+    wire Start ;
+    wire [1:0] MCycleOp ;
+    wire [31:0] Operand1;
+    wire [31:0] Operand2;
+    wire [31:0] Result1;
+    wire [31:0] Result2;
+    wire Busy;
+    wire [3:0] MCond;
+    wire [31:0] ALUMCMux;
+    
     // datapath connections here
-    assign WE_PC = 1 ; // Will need to control it for multi-cycle operations (Multiplication, Division) and/or Pipelining with hazard hardware.
+    assign WE_PC = ~Busy ; // Will need to control it for multi-cycle operations (Multiplication, Division) and/or Pipelining with hazard hardware.
+    
+    //MUL and DIV signals
+    assign MCond = Instr[7:4];
+    assign Operand1 = RD2;
+    assign Operand2 = RD1;
+    
     
     //Register File
     assign WE3 = RegWrite;
-    assign A1 = (RegSrc[0] == 1) ? 4'b1111 : Instr[19:16]; //R15 or Rn
-    assign A2 = (RegSrc[1] == 1) ? Instr[15:12] : Instr[3:0]; //Rd(for STR) or Rm
-    assign A3 = Instr[15:12];
+    assign A1 = (RegSrc[0] == 1) ? 4'b1111 : (Start == 1 ? Instr[11:8] : Instr[19:16]); //R15 or Rn or Rs for Div/Mul
+    assign A2 = (RegSrc[1] == 1) ? Instr[15:12] : Instr[3:0]; //Rd(for STR) or Rm or Rm for Div/Mul
+    assign A3 = (Start == 1) ? Instr[19:16] : Instr[15:12];
     assign WD3 = Result;
     assign R15 = PCPlus8;
     assign WriteData = RD2;
@@ -147,7 +164,8 @@ module ARM(
     //PC Signals
     assign PCPlus4 = PC + 4;
     assign PCPlus8 = PCPlus4 + 4;
-    assign Result = (MemtoReg == 1) ? ReadData : ALUResult;
+    assign ALUMCMux = (Start == 1) ? Result1 : ALUResult;
+    assign Result = (MemtoReg == 1) ? ReadData : ALUMCMux;
     assign PC_IN = (PCSrc == 1) ? Result : PCPlus4;
     
     //Shifter Signals
@@ -180,6 +198,7 @@ module ARM(
                     Rd,
                     Op,
                     Funct,
+                    MCond,
                     PCS,
                     RegW,
                     MemW,
@@ -189,7 +208,9 @@ module ARM(
                     RegSrc,
                     NoWrite,
                     ALUControl,
-                    FlagW
+                    FlagW,
+                    Start,
+                    MCycleOp
                 );
                                 
     // Instantiate CondLogic
@@ -231,7 +252,19 @@ module ARM(
                     WE_PC,    
                     PC_IN,
                     PC  
-                );                             
+                );
+                
+    // Instantiate MCygle
+    MCycle MCycle1(
+                CLK,
+                RESET,
+                Start,
+                MCycleOp,
+                Operand1,
+                Operand2,
+                Result1,
+                Result2,
+                Busy);                             
 endmodule
 
 

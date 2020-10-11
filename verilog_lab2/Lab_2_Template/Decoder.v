@@ -38,6 +38,7 @@ module Decoder(
     input [5:0] Funct,
     //DP: Funct[0] = S-bit, Funct[4:1] = cmd, Funct[5] = I-bit
     //MI: Funct[0] = L-bit, [1] = L-bit, [2] = B-bit, [3] = U-bit, [4] = P-bit, [5] = I-bit
+    input [3:0] MCond,
     output PCS,
     output RegW,
     output MemW,
@@ -47,7 +48,9 @@ module Decoder(
     output [1:0] RegSrc,
     output NoWrite,
     output reg [1:0] ALUControl,
-    output reg [1:0] FlagW
+    output reg [1:0] FlagW,
+    output Start,
+    output [1:0] MCycleOp
     );
     
     wire ALUOp ;
@@ -71,6 +74,10 @@ module Decoder(
     assign ALUOp = (Op == 2'b00) ? 1 : 0; //1 for DP, 0 for others
     
     assign NoWrite = (Op == 2'b00) && (Funct[4:1] == 4'b1010 || Funct[4:1] == 4'b1011) && (Funct[0] == 1); //for CMP
+    
+    assign Start = ((Op == 2'b00) && (MCond == 4'b1001)) ? 1'b1 : 1'b0;
+    
+    assign MCycleOp = (Funct[4:1] == 4'b0000) ? 2'b01 : 2'b11;
     
     always@(*)//FlagW[1:0]
     begin

@@ -66,42 +66,71 @@ module test_MCycle(
     initial begin
         // hold reset state for 100 ns.
         #10 ;    
-        MCycleOp = 2'b00 ;
-        Operand1 = 4'b1111 ;
-        Operand2 = 4'b1111 ;
+        MCycleOp = 2'b00 ; //signed mul
+        Operand1 = 4'b1111 ; //-1
+        Operand2 = 4'b1111 ; //-1
         Start = 1'b1 ; // Start is asserted continously(Operations are performed back to back). To try a non-continous Start, you can uncomment the commented lines.    
-
+        
         wait(Busy) ; // suspend initial block till condition becomes true  ;
         wait(~Busy) ;
 //        #10 ;
 //        Start = 1'b0 ;
-//        #10 ;
-        Operand1 = 4'b1110 ;
-        Operand2 = 4'b1111 ;
+//        #10 ; //signed mul
+        Operand1 = 4'b0101 ; //5
+        Operand2 = 4'b1110 ; //-2
 //        Start = 1'b1 ;
         
         wait(Busy) ; 
         wait(~Busy) ;
 //        #10 ;
-//        Start = 1'b0 ;
-//        #10 ;
-        MCycleOp = 2'b01 ;
-        Operand1 = 4'b1111 ;
-        Operand2 = 4'b1111 ;
+//        Start = 1'b0;
+        MCycleOp = 2'b01 ; //signed mul
+        Operand1 = 4'b1111 ; //15
+        Operand2 = 4'b1111 ; //15
 //        Start = 1'b1 ;
-
-        wait(Busy) ; 
-        wait(~Busy) ; 
-//        #10 ;
-//        Start = 1'b0 ;
-//        #10 ;
-        Operand1 = 4'b1110 ;
-        Operand2 = 4'b1111 ;
-//        Start = 1'b1 ;
-
-        wait(Busy) ; 
-        wait(~Busy) ; 
+//        #10 ; //unsigned div
+        wait(Busy) ; // suspend initial block till condition becomes true  ;
+        wait(~Busy) ;
+        
+        MCycleOp = 2'b11 ; //unsigned div
+        Operand1 = 4'b1001 ; //9
+        Operand2 = 4'b0011 ; //3
+        
+        wait(Busy) ; // suspend initial block till condition becomes true  ;
+        wait(~Busy) ;
+        
+        Operand1 = 4'b1111 ; //15
+        Operand2 = 4'b1111 ; //15
+                
+        wait(Busy) ; // suspend initial block till condition becomes true  ;
+        wait(~Busy) ;
+                
+        MCycleOp = 2'b10 ; //signed div
+        Operand1 = 4'b1001 ; //-7
+        Operand2 = 4'b0010 ; //2
+                        
+        wait(Busy) ; // suspend initial block till condition becomes true  ;
+        wait(~Busy) ;
+        
+        Operand1 = 4'b0111 ; //7
+        Operand2 = 4'b1101 ; //-3
+        
+        wait(Busy) ; // suspend initial block till condition becomes true  ;
+        wait(~Busy) ;
         Start = 1'b0 ;
+
+//        wait(Busy) ; 
+//        wait(~Busy) ; 
+////        #10 ;
+////        Start = 1'b0 ;
+////        #10 ;
+//        Operand1 = 4'b1110 ;
+//        Operand2 = 4'b1111 ;
+////        Start = 1'b1 ;
+
+//        wait(Busy) ; 
+//        wait(~Busy) ; 
+//        Start = 1'b0 ;
     end
      
     // GENERATE CLOCK       
