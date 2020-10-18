@@ -43,7 +43,8 @@ module CondLogic(
     input [3:0] ALUFlags,
     output PCSrc,
     output RegWrite,
-    output MemWrite
+    output MemWrite,
+    output reg Carry
     );
     
     reg CondEx ;
@@ -108,6 +109,7 @@ module CondLogic(
             C <= C;
             V <= V;
         end
+        Carry <= C;
     end
 
 endmodule

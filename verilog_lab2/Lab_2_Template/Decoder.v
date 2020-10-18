@@ -73,7 +73,7 @@ module Decoder(
     
     assign ALUOp = (Op == 2'b00) ? 1 : 0; //1 for DP, 0 for others
     
-    assign NoWrite = (Op == 2'b00) && (Funct[4:1] == 4'b1010 || Funct[4:1] == 4'b1011) && (Funct[0] == 1); //for CMP
+    assign NoWrite = (Op == 2'b00) && (Funct[4:1] == 4'b1010 || Funct[4:1] == 4'b1011 || Funct[4:1] == 4'b1000 || Funct[4:1] == 4'b1001) && (Funct[0] == 1); //for CMP/CMN/TST/TEQ 
     
     assign Start = ((Op == 2'b00) && (MCond == 4'b1001)) ? 1'b1 : 1'b0;
     
@@ -91,9 +91,16 @@ module Decoder(
             begin
                 case(Funct[4:1]) //cmd
                     4'b0100: FlagW <= 2'b11; //ADD
+                    4'b0101: FlagW <= 2'b11; //ADC
                     4'b0010: FlagW <= 2'b11; //SUB
+                    4'b0110: FlagW <= 2'b11; //SBC
+                    4'b0011: FlagW <= 2'b11; //RSB
+                    4'b0111: FlagW <= 2'b11; //RSC
                     4'b0000: FlagW <= 2'b10; //AND
+                    4'b1000: FlagW <= 2'b10; //TST
                     4'b1100: FlagW <= 2'b10; //ORR
+                    4'b0001: FlagW <= 2'b10; //EOR
+                    4'b1001: FlagW <= 2'b10; //TEQ
                     4'b1010: FlagW <= 2'b11; //CMP
                     4'b1011: FlagW <= 2'b11; //CMN
                     default: FlagW <= 2'bxx; //unpredictable
@@ -130,9 +137,16 @@ module Decoder(
         begin
             case(Funct[4:1]) //cmd
                 4'b0100: ALUControl <= 2'b00; //ADD
+                4'b0101: ALUControl <= 2'b00; //ADC
                 4'b0010: ALUControl <= 2'b01; //SUB
+                4'b0110: ALUControl <= 2'b01; //SBC
+                4'b0011: ALUControl <= 2'b01; //RSB
+                4'b0111: ALUControl <= 2'b01; //RSC
                 4'b0000: ALUControl <= 2'b10; //AND
+                4'b1000: ALUControl <= 2'b10; //TST
                 4'b1100: ALUControl <= 2'b11; //ORR
+                4'b0001: ALUControl <= 2'b11; //EOR
+                4'b1001: ALUControl <= 2'b11; //TEQ
                 4'b1010: ALUControl <= 2'b01; //CMP
                 4'b1011: ALUControl <= 2'b00; //CMN
                 default: ALUControl <= 2'bxx; //unpredictable

@@ -31,6 +31,9 @@ module ALU(
     input [31:0] Src_A,
     input [31:0] Src_B,
     input [1:0] ALUControl,
+    input [3:0] Cmd,
+    input [1:0] Op,
+    input Carry,
     output [31:0] ALUResult,
     output [3:0] ALUFlags
     );
@@ -42,10 +45,11 @@ module ALU(
     reg [32:0] C_0 ;
     wire N, Z, C ;
     reg V ;
+    reg [31:0]NotCarry;
     
     assign S_wider = Src_A_comp + Src_B_comp + C_0 ;
     
-    always@(Src_A, Src_B, ALUControl, S_wider) begin
+    always@(Src_A, Src_B, ALUControl, S_wider, Cmd, Carry) begin
         // default values; help avoid latches
         C_0 <= 0 ; 
         Src_A_comp <= {1'b0, Src_A} ;
@@ -54,22 +58,61 @@ module ALU(
         V <= 0 ;
     
         case(ALUControl)
-            2'b00:  
+            2'b00:  //Addition
+            if(Cmd == 4'b0101 && Op == 2'b00) //ADC
+            begin
+                ALUResult_i <= S_wider[31:0] + Carry ;
+                V <= ( Src_A[31] ~^ Src_B[31] )  & ( Src_B[31] ^ S_wider[31] );
+            end
+            else //ADD/CMN
             begin
                 ALUResult_i <= S_wider[31:0] ;
                 V <= ( Src_A[31] ~^ Src_B[31] )  & ( Src_B[31] ^ S_wider[31] );          
             end
             
-            2'b01:  
-            begin
-                C_0[0] <= 1 ;  
-                Src_B_comp <= {1'b0, ~ Src_B} ;
-                ALUResult_i <= S_wider[31:0] ;
-                V <= ( Src_A[31] ^ Src_B[31] )  & ( Src_B[31] ~^ S_wider[31] );       
-            end
+            2'b01:  //Subtraction
+                if(Cmd == 4'b0011 && Op == 2'b00) //RSB
+                begin
+                    C_0[0] <= 1 ;  
+                    Src_A_comp <= {1'b0, ~ Src_A} ;
+                    ALUResult_i <= S_wider[31:0] ;
+                    V <= ( Src_A[31] ^ Src_B[31] )  & ( Src_A[31] ~^ S_wider[31] );       
+                end
+                else if(Cmd == 4'b0111 && Op == 2'b00) //RSC
+                begin
+                    NotCarry = {{31{1'b0}}, ~Carry};
+                    C_0[0] <= 1 ;  
+                    Src_A_comp <= {1'b0, ~ Src_A} ;
+                    ALUResult_i <= S_wider[31:0] - NotCarry ;
+                    V <= ( Src_A[31] ^ Src_B[31] )  & ( Src_A[31] ~^ S_wider[31] );
+                end
+                else if(Cmd == 4'b0110 && Op == 2'b00) //SBC
+                begin
+                    NotCarry = {{31{1'b0}}, ~Carry};
+                    C_0[0] <= 1 ;  
+                    Src_B_comp <= {1'b0, ~ Src_B} ;
+                    ALUResult_i <= S_wider[31:0] - NotCarry ;
+                    V <= ( Src_A[31] ^ Src_B[31] )  & ( Src_B[31] ~^ S_wider[31] );
+                end
+                else //SUB/CMP
+                begin
+                    C_0[0] <= 1 ;  
+                    Src_B_comp <= {1'b0, ~ Src_B} ;
+                    ALUResult_i <= S_wider[31:0] ;
+                    V <= ( Src_A[31] ^ Src_B[31] )  & ( Src_B[31] ~^ S_wider[31] );  
+                end
             
-            2'b10: ALUResult_i <= Src_A & Src_B ;
-            2'b11: ALUResult_i <= Src_A | Src_B ;               
+            
+            2'b10: ALUResult_i <= Src_A & Src_B ; //AND/TST
+            2'b11: 
+                if(Cmd == 4'b1100) //ORR  
+                begin
+                    ALUResult_i <= Src_A | Src_B ;    
+                end  
+                else if(Cmd == 4'b0001 || Cmd == 4'b1001) //EOR/TEQ
+                begin
+                    ALUResult_i <= Src_A ^ Src_B ;
+                end      
         endcase ;
     end
     

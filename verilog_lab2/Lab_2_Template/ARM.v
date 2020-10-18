@@ -91,6 +91,7 @@ module ARM(
     wire PCSrc ;
     wire RegWrite ; 
     //wire MemWrite
+    wire Carry ;
        
     // Shifter signals // TODO: Will come back
     wire [1:0] Sh ;
@@ -225,7 +226,8 @@ module ARM(
                     ALUFlags,
                     PCSrc,
                     RegWrite,
-                    MemWrite
+                    MemWrite,
+                    Carry
                 );
                 
     // Instantiate Shifter        
@@ -241,6 +243,9 @@ module ARM(
                     Src_A,
                     Src_B,
                     ALUControl,
+                    Funct[4:1],
+                    Op,
+                    Carry,
                     ALUResult,
                     ALUFlags
                 );                
