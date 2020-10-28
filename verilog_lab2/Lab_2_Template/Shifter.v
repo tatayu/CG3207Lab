@@ -36,23 +36,25 @@ module Shifter(
     input [1:0] Sh,
     input [4:0] Shamt5,
     input [31:0] ShIn,
-    output [31:0] ShOut
+    output [31:0] ShOut,
+    output ShCarry
     );
-      
+     
     wire [31:0] ShTemp0 ;
     wire [31:0] ShTemp1 ;
     wire [31:0] ShTemp2 ;
     wire [31:0] ShTemp3 ;
     wire [31:0] ShTemp4 ;
-                    
+    
     assign ShTemp0 = ShIn ;
     shiftByNPowerOf2#(0) shiftBy0PowerOf2( Sh, Shamt5[0], ShTemp0, ShTemp1 ) ;
     shiftByNPowerOf2#(1) shiftBy1PowerOf2( Sh, Shamt5[1], ShTemp1, ShTemp2 ) ;
     shiftByNPowerOf2#(2) shiftBy2PowerOf2( Sh, Shamt5[2], ShTemp2, ShTemp3 ) ;
     shiftByNPowerOf2#(3) shiftBy3PowerOf2( Sh, Shamt5[3], ShTemp3, ShTemp4 ) ;
     shiftByNPowerOf2#(4) shiftBy4PowerOf2( Sh, Shamt5[4], ShTemp4, ShOut ) ;
+    
+    assign ShCarry = (Sh == 2'b00) ? ((Shamt5 == 0) ? 0 : ShIn[32 - Shamt5]) : ((Shamt5 == 0) ? 0 : ShIn[Shamt5 - 1]);
 
-	
 endmodule
 
 

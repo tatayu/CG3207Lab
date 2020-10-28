@@ -54,10 +54,14 @@ module ARM(
     wire [3:0] A1 ;
     wire [3:0] A2 ;
     wire [3:0] A3 ;
+    wire [3:0] A4 ; //4th register for DPRSR or MULL
+    wire [3:0] A5;
     wire [31:0] WD3 ;
+    wire [31:0] WD4 ;
     wire [31:0] R15 ;
     wire [31:0] RD1 ;
     wire [31:0] RD2 ;
+    wire [31:0] RD3 ; //value fromm the 4th register
     
     // Extend Module signals
     wire [1:0] ImmSrc ;
@@ -98,6 +102,7 @@ module ARM(
     wire [4:0] Shamt5 ;
     wire [31:0] ShIn ;
     wire [31:0] ShOut ;
+    wire ShCarry ;
     
     // ALU signals
     wire [31:0] Src_A ;
@@ -105,13 +110,16 @@ module ARM(
     wire [1:0] ALUControl ;
     //wire [31:0] ALUResult ;
     wire [3:0] ALUFlags ;
-    
+    wire [3:0] MCycleFlags ;
+    //wire [3:0] FinalFlags ;
     // ProgramCounter signals
     //wire CLK ;
     //wire RESET ;
     wire WE_PC ;    
     wire [31:0] PC_IN ; 
     //wire [31:0] PC ; 
+    wire Swap;
+    wire SwapLDRDone; //1: when LDR of SWP is done ?Rn -> Rd?
         
     // Other internal signals here
     wire [31:0] PCPlus4 ;
@@ -128,6 +136,7 @@ module ARM(
     wire Busy;
     wire [3:0] MCond;
     wire [31:0] ALUMCMux;
+    wire Done;
     
     // datapath connections here
     assign WE_PC = ~Busy ; // Will need to control it for multi-cycle operations (Multiplication, Division) and/or Pipelining with hazard hardware.
@@ -142,20 +151,27 @@ module ARM(
     assign WE3 = RegWrite;
     assign A1 = (RegSrc[0] == 1) ? 4'b1111 : (Start == 1 ? Instr[11:8] : Instr[19:16]); //R15 or Rn or Rs for Div/Mul
     assign A2 = (RegSrc[1] == 1) ? Instr[15:12] : Instr[3:0]; //Rd(for STR) or Rm or Rm for Div/Mul
-    assign A3 = (Start == 1) ? Instr[19:16] : Instr[15:12];
+    assign A3 = (Start == 1) ? Instr[19:16] : Instr[15:12]; //RdHi for SMULL/UMULL[19:16]
+    assign A4 = (Instr[27:26] == 2'b00 && Instr[25] == 1'b0) ? Instr[11:8] : 4'bx; //register shifted register (read port)
+    assign A5 = (Start == 1 && (Instr[24:21] == 4'b0110 || Instr[24:21] == 4'b0100)) ? Instr[15:12] : 4'bx; //RdLo for SMULL/UMULL[15:12] (write port)
     assign WD3 = Result;
+    assign WD4 = (Start == 1 && (Instr[24:21] == 4'b0110 || Instr[24:21] == 4'b0100)) ? Result2 : 32'bx;
     assign R15 = PCPlus8;
     assign WriteData = RD2;
     
     //Extend Module Signals
     assign InstrImm = Instr[23:0];
     
+    //Swap
+    //assign Swap = (Instr[27:20] == 8'b00010000 && Instr[7:4] == 4'b1001) ? 1 : 0; //TODO: Instr[27:20] cannot hard code
+    
     //Decoder Signals
     assign Rd = Instr[15:12];
-    assign Op = Instr[27:26];
-    assign Funct = (Op == 2'b10) ? Instr[25:24] : Instr[25:20];
+    assign Op = Instr[27:26]; //(Swap == 1'b1) ? 2'b01 : 
+    assign Funct = (Op == 2'b10) ? Instr[25:24] : Instr[25:20]; //TODO: check with offset (Swap == 1'b1) ? ((SwapLDRDone) == 0) ? 6'b100001 : 2'b) : 
     
     //Conditional Logic Signals
+    //assign FinalFlags = (done == 1) ? MCycleFlags : ALUFlags;
     assign Cond = Instr[31:28];
     
     //ALU Signals
@@ -169,11 +185,11 @@ module ARM(
     assign Result = (MemtoReg == 1) ? ReadData : ALUMCMux;
     assign PC_IN = (PCSrc == 1) ? Result : PCPlus4;
     
-    //Shifter Signals
-    assign Sh = Instr[6:5];
-    assign Shamt5 = Instr[11:7];
-    assign ShIn = RD2;
-    
+    //Shifter Signals 
+    assign Sh = (Instr[25] == 1) ? 2'b11 : Instr[6:5];
+    assign Shamt5 = (Instr[25] == 1) ? ({Instr[11:8], 1'b0}) : ((Instr[4] == 0) ? Instr[11:7] : RD3[4:0]);
+    assign ShIn = (Instr[25] == 1) ? ExtImm : RD2;
+   
     // Instantiate RegFile
     RegFile RegFile1( 
                     CLK,
@@ -181,10 +197,14 @@ module ARM(
                     A1,
                     A2,
                     A3,
+                    A4,
+                    A5,
                     WD3,
+                    WD4,
                     R15,
                     RD1,
-                    RD2     
+                    RD2,
+                    RD3   
                 );
                 
      // Instantiate Extend Module
@@ -224,6 +244,11 @@ module ARM(
                     FlagW,
                     Cond,
                     ALUFlags,
+                    MCycleFlags,
+                    Done,
+                    ShCarry,
+                    Op,
+                    Instr[20],
                     PCSrc,
                     RegWrite,
                     MemWrite,
@@ -235,7 +260,8 @@ module ARM(
                     Sh,
                     Shamt5,
                     ShIn,
-                    ShOut
+                    ShOut,
+                    ShCarry
                 );
                 
     // Instantiate ALU        
@@ -269,7 +295,10 @@ module ARM(
                 Operand2,
                 Result1,
                 Result2,
-                Busy);                             
+                Busy,                
+                MCycleFlags,
+                Done
+                );                             
 endmodule
 
 

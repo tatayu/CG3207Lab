@@ -41,6 +41,11 @@ module CondLogic(
     input [1:0] FlagW,
     input [3:0] Cond,
     input [3:0] ALUFlags,
+    input [3:0] MCycleFlags,
+    input MCycleDone,
+    input ShCarry,
+    input [1:0] Op,
+    input S_bit,
     output PCSrc,
     output RegWrite,
     output MemWrite,
@@ -83,13 +88,27 @@ module CondLogic(
     assign FlagWrite[0] = CondEx & FlagW[0];
     assign FlagWrite[1] = CondEx & FlagW[1];
     
+    
     always@(posedge CLK)
     begin
         if(FlagWrite[1] == 1'b1) 
         begin
-            N <= ALUFlags[3];
-            Z <= ALUFlags[2];
+            if(MCycleDone == 1'b1)
+            begin
+                N <= MCycleFlags[3];
+                Z <= MCycleFlags[2];
+            end
+            else
+            begin 
+                N <= ALUFlags[3];
+                Z <= ALUFlags[2];
+            end
         end
+//        else if(MCycleDone == 1'b1)
+//        begin
+//            N <= MCycleFlags[3];
+//            Z <= MCycleFlags[2];
+//        end
         else
         begin
             N <= N;
@@ -103,6 +122,11 @@ module CondLogic(
         begin
             C <= ALUFlags[1];
             V <= ALUFlags[0];
+        end
+        else if(Op == 2'b00 && S_bit == 1)
+        begin
+            C <= ShCarry;
+            V <= V;
         end
         else
         begin

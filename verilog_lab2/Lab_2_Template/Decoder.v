@@ -57,15 +57,15 @@ module Decoder(
     reg [9:0] controls ;
     //<extra signals, if any>
     
-    assign RegW = (Op == 2'b00) || ((Op == 2'b01) && (Funct[0] == 1)); //All DP instructions and LDR
+    assign RegW = (Op == 2'b00) || ((Op == 2'b01) && (Funct[0] == 1)); //All DP instructions and LDR ******
     
     assign PCS = ((Rd == 4'b1111) && RegW) || Op == 2'b10; //PC (R15) is written by an instruction or branch
     
-    assign MemW = (Op == 2'b01) && (Funct[0] == 0); //Only for STR instruction
+    assign MemW = (Op == 2'b01) && (Funct[0] == 0); //Only for STR instruction ******
     
-    assign MemtoReg = (Op == 2'b01) && (Funct[0] == 1); //Only for LDR intrctuion
+    assign MemtoReg = (Op == 2'b01) && (Funct[0] == 1); //Only for LDR intrctuion ******
     
-    assign ALUSrc = ((Op == 2'b00) && (Funct[5] == 0)) ? 0 : 1; //Not for DP intruction with register Src2
+    assign ALUSrc = (Op == 2'b00) ? 0 : 1; //Not for DP intruction with register Src2
     
     assign ImmSrc = Op; //Choose number of bits for immediate
     
@@ -75,9 +75,9 @@ module Decoder(
     
     assign NoWrite = (Op == 2'b00) && (Funct[4:1] == 4'b1010 || Funct[4:1] == 4'b1011 || Funct[4:1] == 4'b1000 || Funct[4:1] == 4'b1001) && (Funct[0] == 1); //for CMP/CMN/TST/TEQ 
     
-    assign Start = ((Op == 2'b00) && (MCond == 4'b1001)) ? 1'b1 : 1'b0;
+    assign Start = (Op == 2'b00 && MCond == 4'b1001 && Funct[5] == 1'b0) ? 1'b1 : 1'b0;
     
-    assign MCycleOp = (Funct[4:1] == 4'b0000) ? 2'b01 : 2'b11;
+    assign MCycleOp = (Funct[4:1] == 4'b0000 || Funct[4:1] == 4'b0100) ? 2'b01 : ((Funct[4:1] == 4'b0110) ? 2'b00 : 2'b11) ;
     
     always@(*)//FlagW[1:0]
     begin
@@ -96,14 +96,14 @@ module Decoder(
                     4'b0110: FlagW <= 2'b11; //SBC
                     4'b0011: FlagW <= 2'b11; //RSB
                     4'b0111: FlagW <= 2'b11; //RSC
-                    4'b0000: FlagW <= 2'b10; //AND
+                    4'b0000: FlagW <= 2'b10; //AND//MUL
                     4'b1000: FlagW <= 2'b10; //TST
                     4'b1100: FlagW <= 2'b10; //ORR
                     4'b0001: FlagW <= 2'b10; //EOR
                     4'b1001: FlagW <= 2'b10; //TEQ
                     4'b1010: FlagW <= 2'b11; //CMP
                     4'b1011: FlagW <= 2'b11; //CMN
-                    default: FlagW <= 2'bxx; //unpredictable
+                    default: FlagW <= 2'b00; //unpredictable
                 endcase
             end
             else //S-bit = 0
@@ -149,7 +149,7 @@ module Decoder(
                 4'b1001: ALUControl <= 2'b11; //TEQ
                 4'b1010: ALUControl <= 2'b01; //CMP
                 4'b1011: ALUControl <= 2'b00; //CMN
-                default: ALUControl <= 2'bxx; //unpredictable
+                default: ALUControl <= 2'b00; //unpredictable
             endcase
         end
     end

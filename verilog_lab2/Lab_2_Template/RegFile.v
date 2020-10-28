@@ -38,10 +38,14 @@ module RegFile(
     input [3:0] A1,
     input [3:0] A2,
     input [3:0] A3,
+    input [3:0] A4,
+    input [3:0] A5,
     input [31:0] WD3,
+    input [31:0] WD4,
     input [31:0] R15,
     output [31:0] RD1,
-    output [31:0] RD2
+    output [31:0] RD2,
+    output [31:0] RD3
     );
     
     // declare RegBank
@@ -52,12 +56,15 @@ module RegFile(
     // read
     assign RD1 = (A1 == 4'b1111) ? R15 : RegBank[A1] ; 
     assign RD2 = (A2 == 4'b1111) ? R15 : RegBank[A2] ;   
+    assign RD3 = (A4 == 4'b1111) ? R15 : RegBank[A4] ;
     
     // write
     always@(posedge CLK)
     begin
         if((A3 != 4'b1111) & (WE3))
             RegBank[A3] <= WD3 ;
+        if((A5 != 4'b1111) & (WE3))
+            RegBank[A5] <= WD4 ;
     end
     
 endmodule
