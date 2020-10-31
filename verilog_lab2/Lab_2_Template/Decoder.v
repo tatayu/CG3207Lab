@@ -37,10 +37,10 @@ module Decoder(
     input [1:0] Op,
     input [5:0] Funct,
     //DP: Funct[0] = S-bit, Funct[4:1] = cmd, Funct[5] = I-bit
-    //MI: Funct[0] = L-bit, [1] = L-bit, [2] = B-bit, [3] = U-bit, [4] = P-bit, [5] = I-bit
+    //MI: Funct[0] = L-bit, [1] = W-bit, [2] = B-bit, [3] = U-bit, [4] = P-bit, [5] = I-bit
     input [3:0] MCond,
     output PCS,
-    output RegW,
+    output RegW, 
     output MemW,
     output MemtoReg,
     output ALUSrc,
@@ -50,7 +50,8 @@ module Decoder(
     output reg [1:0] ALUControl,
     output reg [1:0] FlagW,
     output Start,
-    output [1:0] MCycleOp
+    output [1:0] MCycleOp,
+    output StartProcessorStall
     );
     
     wire ALUOp ;
@@ -65,7 +66,8 @@ module Decoder(
     
     assign MemtoReg = (Op == 2'b01) && (Funct[0] == 1); //Only for LDR intrctuion ******
     
-    assign ALUSrc = (Op == 2'b00) ? 0 : 1; //Not for DP intruction with register Src2
+    //assign ALUSrc = (Op == 2'b00) ? 0 : 1; //Not for DP intruction with register Src2
+    assign ALUSrc = (Op == 2'b00) ? 0 : ((Op == 2'b01) ? (Funct[5] == 1 ? 0 : 1) : 1);
     
     assign ImmSrc = Op; //Choose number of bits for immediate
     
@@ -78,6 +80,8 @@ module Decoder(
     assign Start = (Op == 2'b00 && MCond == 4'b1001 && Funct[5] == 1'b0) ? 1'b1 : 1'b0;
     
     assign MCycleOp = (Funct[4:1] == 4'b0000 || Funct[4:1] == 4'b0100) ? 2'b01 : ((Funct[4:1] == 4'b0110) ? 2'b00 : 2'b11) ;
+    
+    assign StartProcessorStall = (Op == 2'b01) && (({Funct[4], Funct[1]} == 2'b00) || ({Funct[4], Funct[1]} == 2'b11));
     
     always@(*)//FlagW[1:0]
     begin
@@ -97,12 +101,15 @@ module Decoder(
                     4'b0011: FlagW <= 2'b11; //RSB
                     4'b0111: FlagW <= 2'b11; //RSC
                     4'b0000: FlagW <= 2'b10; //AND//MUL
+                    4'b1110: FlagW <= 2'b10; //BIC
                     4'b1000: FlagW <= 2'b10; //TST
                     4'b1100: FlagW <= 2'b10; //ORR
                     4'b0001: FlagW <= 2'b10; //EOR
                     4'b1001: FlagW <= 2'b10; //TEQ
                     4'b1010: FlagW <= 2'b11; //CMP
                     4'b1011: FlagW <= 2'b11; //CMN
+                    4'b1101: FlagW <= 2'b10; //MOV
+                    4'b1111: FlagW <= 2'b10; //MVN
                     default: FlagW <= 2'b00; //unpredictable
                 endcase
             end
@@ -143,12 +150,15 @@ module Decoder(
                 4'b0011: ALUControl <= 2'b01; //RSB
                 4'b0111: ALUControl <= 2'b01; //RSC
                 4'b0000: ALUControl <= 2'b10; //AND
+                4'b1110: ALUControl <= 2'b10; //BIC
                 4'b1000: ALUControl <= 2'b10; //TST
                 4'b1100: ALUControl <= 2'b11; //ORR
                 4'b0001: ALUControl <= 2'b11; //EOR
                 4'b1001: ALUControl <= 2'b11; //TEQ
                 4'b1010: ALUControl <= 2'b01; //CMP
                 4'b1011: ALUControl <= 2'b00; //CMN
+                4'b1101: ALUControl <= 2'b00; //MOV
+                4'b1111: ALUControl <= 2'b00; //MVN
                 default: ALUControl <= 2'b00; //unpredictable
             endcase
         end

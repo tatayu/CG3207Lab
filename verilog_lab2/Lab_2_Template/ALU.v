@@ -45,7 +45,7 @@ module ALU(
     reg [32:0] C_0 ;
     wire N, Z, C ;
     reg V ;
-    reg [31:0]NotCarry;
+    //reg [31:0]NotCarry;
     
     assign S_wider = Src_A_comp + Src_B_comp + C_0 ;
     
@@ -61,12 +61,13 @@ module ALU(
             2'b00:  //Addition
             if(Cmd == 4'b0101 && Op == 2'b00) //ADC
             begin
-                ALUResult_i <= S_wider[31:0] + Carry ;
+                C_0[0] <= Carry;
+                ALUResult_i <= S_wider[31:0]; //TODO
                 V <= ( Src_A[31] ~^ Src_B[31] )  & ( Src_B[31] ^ S_wider[31] );
             end
             else //ADD/CMN
             begin
-                ALUResult_i <= S_wider[31:0] ;
+                ALUResult_i <= (Cmd == 4'b1111 && Op == 2'b00) ? ~S_wider[31:0] : S_wider[31:0];
                 V <= ( Src_A[31] ~^ Src_B[31] )  & ( Src_B[31] ^ S_wider[31] );          
             end
             
@@ -80,18 +81,18 @@ module ALU(
                 end
                 else if(Cmd == 4'b0111 && Op == 2'b00) //RSC
                 begin
-                    NotCarry = {{31{1'b0}}, ~Carry};
-                    C_0[0] <= 1 ;  
+                    //NotCarry = {{31{1'b0}}, ~Carry};
+                    C_0[1:0] <= Carry == 1'b1 ? 2'b11 : 2'b10 ;  ///// 
                     Src_A_comp <= {1'b0, ~ Src_A} ;
-                    ALUResult_i <= S_wider[31:0] - NotCarry ;
+                    ALUResult_i <= S_wider[31:0]; //TODO
                     V <= ( Src_A[31] ^ Src_B[31] )  & ( Src_A[31] ~^ S_wider[31] );
                 end
                 else if(Cmd == 4'b0110 && Op == 2'b00) //SBC
                 begin
-                    NotCarry = {{31{1'b0}}, ~Carry};
-                    C_0[0] <= 1 ;  
-                    Src_B_comp <= {1'b0, ~ Src_B} ;
-                    ALUResult_i <= S_wider[31:0] - NotCarry ;
+                    //NotCarry = {{31{1'b0}}, ~Carry};
+                    C_0[0] <= Carry == 1'b1 ? 2'b11 : 2'b10 ;  //////
+                    Src_B_comp <= {1'b0, ~ Src_B} ; 
+                    ALUResult_i <= S_wider[31:0] ; //TODO
                     V <= ( Src_A[31] ^ Src_B[31] )  & ( Src_B[31] ~^ S_wider[31] );
                 end
                 else //SUB/CMP
@@ -103,7 +104,16 @@ module ALU(
                 end
             
             
-            2'b10: ALUResult_i <= Src_A & Src_B ; //AND/TST
+            2'b10: 
+                if(Cmd == 4'b1110)
+                begin
+                    ALUResult_i <= Src_A & ~ Src_B ; //BIC
+                end
+                else
+                begin
+                    ALUResult_i <= Src_A & Src_B ; //AND/TST
+                end
+            
             2'b11: 
                 if(Cmd == 4'b1100) //ORR  
                 begin

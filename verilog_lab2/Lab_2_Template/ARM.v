@@ -118,8 +118,8 @@ module ARM(
     wire WE_PC ;    
     wire [31:0] PC_IN ; 
     //wire [31:0] PC ; 
-    wire Swap;
-    wire SwapLDRDone; //1: when LDR of SWP is done ?Rn -> Rd?
+    //wire Swap;
+    //wire SwapLDRDone; //1: when LDR of SWP is done ?Rn -> Rd?
         
     // Other internal signals here
     wire [31:0] PCPlus4 ;
@@ -138,8 +138,13 @@ module ARM(
     wire [31:0] ALUMCMux;
     wire Done;
     
+    //Pre/Post index signal
+    wire StartProcessorStall;
+    wire CycleCounter; //counter for stall processor
+    //wire ProcessorBusy;
+    
     // datapath connections here
-    assign WE_PC = ~Busy ; // Will need to control it for multi-cycle operations (Multiplication, Division) and/or Pipelining with hazard hardware.
+    assign WE_PC = ~Busy; // Will need to control it for multi-cycle operations (Multiplication, Division) and/or Pipelining with hazard hardware.
     
     //MUL and DIV signals
     assign MCond = Instr[7:4];
@@ -150,12 +155,14 @@ module ARM(
     //Register File
     assign WE3 = RegWrite;
     assign A1 = (RegSrc[0] == 1) ? 4'b1111 : (Start == 1 ? Instr[11:8] : Instr[19:16]); //R15 or Rn or Rs for Div/Mul
-    assign A2 = (RegSrc[1] == 1) ? Instr[15:12] : Instr[3:0]; //Rd(for STR) or Rm or Rm for Div/Mul
-    assign A3 = (Start == 1) ? Instr[19:16] : Instr[15:12]; //RdHi for SMULL/UMULL[19:16]
-    assign A4 = (Instr[27:26] == 2'b00 && Instr[25] == 1'b0) ? Instr[11:8] : 4'bx; //register shifted register (read port)
-    assign A5 = (Start == 1 && (Instr[24:21] == 4'b0110 || Instr[24:21] == 4'b0100)) ? Instr[15:12] : 4'bx; //RdLo for SMULL/UMULL[15:12] (write port)
+    assign A2 = (RegSrc[1] == 1) ? Instr[15:12] : Instr[3:0]; //Rd(for STR) or Rm/Rm for Div/Mul
+    assign A3 = (Start == 1) ? Instr[19:16] : Instr[15:12]; //RdHi for SMULL/UMULL[19:16] (write port)
+    //assign A4 = (Instr[27:26] == 2'b00 && Instr[25] == 1'b0) ? Instr[11:8] : 4'bx; 
+    assign A4 = (Instr[27:26] == 2'b01) ? Instr[3:0] : Instr[11:8]; //register shifted register/register shifted immediate for MI(Rm)(read port)
+    assign A5 = (Start == 1 && (Instr[24:21] == 4'b0110 || Instr[24:21] == 4'b0100)) ? Instr[15:12] : 4'bx; //RdLo for SMULL/UMULL[15:12] (write port) //TODO
     assign WD3 = Result;
-    assign WD4 = (Start == 1 && (Instr[24:21] == 4'b0110 || Instr[24:21] == 4'b0100)) ? Result2 : 32'bx;
+    //assign WD4 = (Start == 1 && (Instr[24:21] == 4'b0110 || Instr[24:21] == 4'b0100)) ? Result2 : 32'bx;
+    assign WD4 = Result2;
     assign R15 = PCPlus8;
     assign WriteData = RD2;
     
@@ -175,21 +182,25 @@ module ARM(
     assign Cond = Instr[31:28];
     
     //ALU Signals
-    assign Src_A = RD1;
-    assign Src_B = (ALUSrc == 0) ? ShOut : ExtImm;
+    //assign Src_A = ((Op == 2'b00 && Instr[24:21] == 4'b1101) || (Op == 2'b00 && Instr[24:21] == 4'b1111)) ? 0 : RD1;
+    assign Src_A = (Op == 2'b00) ? (Instr[24:21] == 4'b1101 ? 0 : (Instr[24:21] == 4'b1111 ? 0 : RD1)) : RD1;
+    assign Src_B = (ALUSrc == 0) ? ShOut : ExtImm; //Shifter-operand
     
     //PC Signals
     assign PCPlus4 = PC + 4;
     assign PCPlus8 = PCPlus4 + 4;
     assign ALUMCMux = (Start == 1) ? Result1 : ALUResult;
     assign Result = (MemtoReg == 1) ? ReadData : ALUMCMux;
-    assign PC_IN = (PCSrc == 1) ? Result : PCPlus4;
+    assign PC_IN = (PCSrc == 1) ? Result : (StartProcessorStall == 1 && CycleCounter == 0) ? PC : PCPlus4;
     
     //Shifter Signals 
-    assign Sh = (Instr[25] == 1) ? 2'b11 : Instr[6:5];
-    assign Shamt5 = (Instr[25] == 1) ? ({Instr[11:8], 1'b0}) : ((Instr[4] == 0) ? Instr[11:7] : RD3[4:0]);
-    assign ShIn = (Instr[25] == 1) ? ExtImm : RD2;
-   
+    //assign Sh = (Instr[25] == 1) ? 2'b11 : Instr[6:5];
+    //assign Shamt5 = (Instr[25] == 1) ? ({Instr[11:8], 1'b0}) : ((Instr[4] == 0) ? Instr[11:7] : RD3[4:0]);
+    //assign ShIn = (Instr[25] == 1) ? ExtImm : RD2;
+    assign Sh = (Op == 2'b01) ? Instr[6:5] : ((Instr[25] == 1) ? 2'b11 : Instr[6:5]);
+    assign Shamt5 = (Op == 2'b01) ? Instr[11:7] : ((Instr[25] == 1) ? ({Instr[11:8], 1'b0}) : ((Instr[4] == 0) ? Instr[11:7] : RD3[4:0]));
+    assign ShIn = (Op == 2'b01) ? (Instr[25] == 1 ? RD3 : ExtImm) : (Instr[25] == 1 ? ExtImm : RD2);
+     
     // Instantiate RegFile
     RegFile RegFile1( 
                     CLK,
@@ -231,7 +242,8 @@ module ARM(
                     ALUControl,
                     FlagW,
                     Start,
-                    MCycleOp
+                    MCycleOp,
+                    StartProcessorStall
                 );
                                 
     // Instantiate CondLogic
@@ -298,7 +310,15 @@ module ARM(
                 Busy,                
                 MCycleFlags,
                 Done
-                );                             
+                );
+                
+    StallProcessor StallProcessor1(
+                            CLK,
+                            RESET,
+                            StartProcessorStall,
+                            CycleCounter
+                            //ProcessorBusy
+                            );                             
 endmodule
 
 
