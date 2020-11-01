@@ -39,6 +39,7 @@ module Decoder(
     //DP: Funct[0] = S-bit, Funct[4:1] = cmd, Funct[5] = I-bit
     //MI: Funct[0] = L-bit, [1] = W-bit, [2] = B-bit, [3] = U-bit, [4] = P-bit, [5] = I-bit
     input [3:0] MCond,
+    input Swap,
     output PCS,
     output RegW, 
     output MemW,
@@ -59,6 +60,7 @@ module Decoder(
     //<extra signals, if any>
     
     assign RegW = (Op == 2'b00) || ((Op == 2'b01) && (Funct[0] == 1)); //All DP instructions and LDR ******
+    //assign RegW = (Op == 2'b00) || ((Op == 2'b01) && (Funct[0] == 1))|| (CycleCounter == 2'b01) ; //All DP instructions and LDR ******
     
     assign PCS = ((Rd == 4'b1111) && RegW) || Op == 2'b10; //PC (R15) is written by an instruction or branch
     
@@ -68,8 +70,10 @@ module Decoder(
     
     //assign ALUSrc = (Op == 2'b00) ? 0 : 1; //Not for DP intruction with register Src2
     assign ALUSrc = (Op == 2'b00) ? 0 : ((Op == 2'b01) ? (Funct[5] == 1 ? 0 : 1) : 1);
+    //assign ALUSrc = ((Op == 2'b00) || (CycleCounter == 2'b01)) ? 0 : ((Op == 2'b01) ? (Funct[5] == 1 ? 0 : 1) : 1);
     
     assign ImmSrc = Op; //Choose number of bits for immediate
+    //assign ImmSrc = (CycleCounter == 2'b01) ? 2'b00 : Op;
     
     assign RegSrc = (Op == 2'b01) ? 2'b10 : (Op == 2'b10 ? 2'b01 : 2'b00);
     
@@ -81,7 +85,8 @@ module Decoder(
     
     assign MCycleOp = (Funct[4:1] == 4'b0000 || Funct[4:1] == 4'b0100) ? 2'b01 : ((Funct[4:1] == 4'b0110) ? 2'b00 : 2'b11) ;
     
-    assign StartProcessorStall = (Op == 2'b01) && (({Funct[4], Funct[1]} == 2'b00) || ({Funct[4], Funct[1]} == 2'b11));
+    //assign StartProcessorStall = (Op == 2'b01) & (({Funct[4], Funct[1]} == 2'b00) || ({Funct[4], Funct[1]} == 2'b11));
+    assign StartProcessorStall = Swap; //SWP
     
     always@(*)//FlagW[1:0]
     begin

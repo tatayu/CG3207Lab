@@ -82,7 +82,8 @@ module ALU(
                 else if(Cmd == 4'b0111 && Op == 2'b00) //RSC
                 begin
                     //NotCarry = {{31{1'b0}}, ~Carry};
-                    C_0[1:0] <= Carry == 1'b1 ? 2'b11 : 2'b10 ;  ///// 
+                    C_0[1:0] <= Carry == 1'b1 ? 2'b01 : 2'b00 ;  ///// 
+                    //C_0[0] <= 1;
                     Src_A_comp <= {1'b0, ~ Src_A} ;
                     ALUResult_i <= S_wider[31:0]; //TODO
                     V <= ( Src_A[31] ^ Src_B[31] )  & ( Src_A[31] ~^ S_wider[31] );
@@ -90,7 +91,7 @@ module ALU(
                 else if(Cmd == 4'b0110 && Op == 2'b00) //SBC
                 begin
                     //NotCarry = {{31{1'b0}}, ~Carry};
-                    C_0[0] <= Carry == 1'b1 ? 2'b11 : 2'b10 ;  //////
+                    C_0[0] <= Carry == 1'b1 ? 2'b01 : 2'b00 ;  //////
                     Src_B_comp <= {1'b0, ~ Src_B} ; 
                     ALUResult_i <= S_wider[31:0] ; //TODO
                     V <= ( Src_A[31] ^ Src_B[31] )  & ( Src_B[31] ~^ S_wider[31] );

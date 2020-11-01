@@ -118,7 +118,8 @@ module ARM(
     wire WE_PC ;    
     wire [31:0] PC_IN ; 
     //wire [31:0] PC ; 
-    //wire Swap;
+    wire Swap;
+    wire Cycle2;
     //wire SwapLDRDone; //1: when LDR of SWP is done ?Rn -> Rd?
         
     // Other internal signals here
@@ -141,11 +142,12 @@ module ARM(
     //Pre/Post index signal
     wire StartProcessorStall;
     wire CycleCounter; //counter for stall processor
-    //wire ProcessorBusy;
+    //wire DoneProcessorStall;
+    wire ProcessorBusy;
     
     // datapath connections here
-    assign WE_PC = ~Busy; // Will need to control it for multi-cycle operations (Multiplication, Division) and/or Pipelining with hazard hardware.
-    
+    //assign WE_PC = ~Busy; // Will need to control it for multi-cycle operations (Multiplication, Division) and/or Pipelining with hazard hardware.
+    assign WE_PC = (Busy == 1'b1) ? 1'b0 : ((ProcessorBusy == 1'b1) ? 1'b0 : 1'b1);
     //MUL and DIV signals
     assign MCond = Instr[7:4];
     assign Operand1 = RD2;
@@ -155,7 +157,8 @@ module ARM(
     //Register File
     assign WE3 = RegWrite;
     assign A1 = (RegSrc[0] == 1) ? 4'b1111 : (Start == 1 ? Instr[11:8] : Instr[19:16]); //R15 or Rn or Rs for Div/Mul
-    assign A2 = (RegSrc[1] == 1) ? Instr[15:12] : Instr[3:0]; //Rd(for STR) or Rm/Rm for Div/Mul
+    //assign A2 = (RegSrc[1] == 1) ? Instr[15:12] : Instr[3:0]; //Rd(for STR) or Rm/Rm for Div/Mul
+    assign A2 = (Cycle2 == 1'b1) ? Instr[3:0] : ((RegSrc[1] == 1) ? Instr[15:12] : Instr[3:0]);
     assign A3 = (Start == 1) ? Instr[19:16] : Instr[15:12]; //RdHi for SMULL/UMULL[19:16] (write port)
     //assign A4 = (Instr[27:26] == 2'b00 && Instr[25] == 1'b0) ? Instr[11:8] : 4'bx; 
     assign A4 = (Instr[27:26] == 2'b01) ? Instr[3:0] : Instr[11:8]; //register shifted register/register shifted immediate for MI(Rm)(read port)
@@ -165,17 +168,19 @@ module ARM(
     assign WD4 = Result2;
     assign R15 = PCPlus8;
     assign WriteData = RD2;
-    
-    //Extend Module Signals
-    assign InstrImm = Instr[23:0];
-    
+      
     //Swap
-    //assign Swap = (Instr[27:20] == 8'b00010000 && Instr[7:4] == 4'b1001) ? 1 : 0; //TODO: Instr[27:20] cannot hard code
+    assign Swap = (Instr[27:20] == 8'b00010000 && Instr[7:4] == 4'b1001); //DP NON IMM 7:4 cannot be 1001   
+    assign Cycle2 = (StartProcessorStall == 1 && CycleCounter == 2'b01);
+    //Extend Module Signals
+    assign InstrImm = (Swap == 1) ? 0 : Instr[23:0]; //Normal Instr or SWP
     
     //Decoder Signals
-    assign Rd = Instr[15:12];
-    assign Op = Instr[27:26]; //(Swap == 1'b1) ? 2'b01 : 
-    assign Funct = (Op == 2'b10) ? Instr[25:24] : Instr[25:20]; //TODO: check with offset (Swap == 1'b1) ? ((SwapLDRDone) == 0) ? 6'b100001 : 2'b) : 
+    assign Rd = (Cycle2 == 1'b1) ? Instr[19:16] : Instr[15:12];
+    //assign Rd = (CycleCounter == 2'b01) ? Instr[19:16] : Instr[15:12]; //Second cycle Rd = Rn
+    assign Op = Swap == 1'b1 ? 2'b01 : Instr[27:26]; //LDR/STR for SWP instr
+    //assign Funct = (Op == 2'b10) ? Instr[25:24] : ((Swap == 1'b1) ? 6'b011001 : Instr[25:20]); //TODO: add str for swp
+    assign Funct = (Op == 2'b10) ? Instr[25:24] : ((Swap == 1'b1) ? ((CycleCounter == 2'b01) ? 6'b011000 : 6'b011001) : Instr[25:20]); 
     
     //Conditional Logic Signals
     //assign FinalFlags = (done == 1) ? MCycleFlags : ALUFlags;
@@ -191,7 +196,7 @@ module ARM(
     assign PCPlus8 = PCPlus4 + 4;
     assign ALUMCMux = (Start == 1) ? Result1 : ALUResult;
     assign Result = (MemtoReg == 1) ? ReadData : ALUMCMux;
-    assign PC_IN = (PCSrc == 1) ? Result : (StartProcessorStall == 1 && CycleCounter == 0) ? PC : PCPlus4;
+    assign PC_IN = (PCSrc == 1) ? Result : ( PCPlus4); 
     
     //Shifter Signals 
     //assign Sh = (Instr[25] == 1) ? 2'b11 : Instr[6:5];
@@ -231,6 +236,7 @@ module ARM(
                     Op,
                     Funct,
                     MCond,
+                    Swap,
                     PCS,
                     RegW,
                     MemW,
@@ -316,8 +322,9 @@ module ARM(
                             CLK,
                             RESET,
                             StartProcessorStall,
-                            CycleCounter
-                            //ProcessorBusy
+                            CycleCounter,
+                            //DoneProcessorStall
+                            ProcessorBusy
                             );                             
 endmodule
 
