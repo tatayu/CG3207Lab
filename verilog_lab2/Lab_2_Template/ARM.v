@@ -183,7 +183,7 @@ module ARM(
     //assign Rd = (CycleCounter == 2'b01) ? Instr[19:16] : Instr[15:12]; //Second cycle Rd = Rn
     assign Op = Swap == 1'b1 ? 2'b01 : Instr[27:26]; //LDR/STR for SWP instr
     //assign Funct = (Op == 2'b10) ? Instr[25:24] : ((Swap == 1'b1) ? 6'b011001 : Instr[25:20]); //TODO: add str for swp
-    assign Funct = (Op == 2'b10) ? Instr[25:24] : ((Swap == 1'b1) ? ((CycleCounter == 2'b01) ? 6'b011000 : 6'b011001) : Instr[25:20]); 
+    assign Funct = (Op == 2'b10) ? Instr[25:24] : ((Swap == 1'b1) ? ((Cycle2 == 1) ? 6'b011000 : 6'b011001) : Instr[25:20]); 
     
     //Conditional Logic Signals
     //assign FinalFlags = (done == 1) ? MCycleFlags : ALUFlags;
