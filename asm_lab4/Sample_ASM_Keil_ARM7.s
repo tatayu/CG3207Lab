@@ -40,7 +40,7 @@
 		
 		TEQEQ R7, R8 ; Z=0 (1000 1000)
 		
-		MOV R10, #0xFF0 ; FF(255)
+		MOV R10, #0xFF0 ; FF0(255)
 		STR R10, [R2]
 		STR R10, [R3]
 		
@@ -56,7 +56,7 @@
 		STR R10, [R2]
 		STR R10, [R3]
 		
-		ADCS R10, R7, R8, LSL #4 ; C=0 1100 1101 0010 (00000CD2)
+		ADCS R10, R7, R8, LSL R14 ; C=0 1100 1101 0010 (000C9042)
 		STR R10, [R2]
 		STR R10, [R3]
 		
