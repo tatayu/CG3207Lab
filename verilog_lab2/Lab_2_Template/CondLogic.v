@@ -41,7 +41,7 @@ module CondLogic(
     input [1:0] FlagW,
     input [3:0] Cond,
     input [3:0] ALUFlags,
-    input [3:0] MCycleFlags,
+    input [1:0] MCycleFlags,
     input MCycleDone,
     input ShCarry,
     input [1:0] Op,
@@ -95,8 +95,8 @@ module CondLogic(
         begin
             if(MCycleDone == 1'b1)
             begin
-                N <= MCycleFlags[3];
-                Z <= MCycleFlags[2];
+                N <= MCycleFlags[1];
+                Z <= MCycleFlags[0];
             end
             else
             begin 

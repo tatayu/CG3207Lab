@@ -35,6 +35,7 @@
 module RegFile(
     input CLK,
     input WE3,
+    input WE5,
     input [3:0] A1,
     input [3:0] A2,
     input [3:0] A3,
@@ -63,7 +64,8 @@ module RegFile(
     begin
         if((A3 != 4'b1111) & (WE3))
             RegBank[A3] <= WD3 ;
-        if((A5 != 4'b1111) & (WE3))
+            
+        if((A5 != 4'b1111) & (WE5))
             RegBank[A5] <= WD4 ;
     end
     

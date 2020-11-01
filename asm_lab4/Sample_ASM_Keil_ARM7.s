@@ -80,7 +80,7 @@
 		STR R11, [R2]
 		STR R11, [R3]
 		
-		STR R7, [R2, R14, LSL #1] ;R14 = 1001 (9) Store R7 to [R3](41)
+		STR R7, [R2, R14, LSL #1] ;R14 = 1001 (9) Store R7 = 41 to [R3](41)
 		SWP R10, R8, [R3] ; LDR R10(41), [R3], STR R8(C9), [R3] (7-seg show R8)
 		STR R10, [R2]
 		STR R10, [R3]

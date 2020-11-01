@@ -49,7 +49,7 @@ module ALU(
     
     assign S_wider = Src_A_comp + Src_B_comp + C_0 ;
     
-    always@(Src_A, Src_B, ALUControl, S_wider, Cmd, Carry) begin
+    always@(Src_A, Src_B, ALUControl, S_wider, Cmd, Carry, Op) begin
         // default values; help avoid latches
         C_0 <= 0 ; 
         Src_A_comp <= {1'b0, Src_A} ;
@@ -65,7 +65,7 @@ module ALU(
                 ALUResult_i <= S_wider[31:0]; //TODO
                 V <= ( Src_A[31] ~^ Src_B[31] )  & ( Src_B[31] ^ S_wider[31] );
             end
-            else //ADD/CMN
+            else //ADD/CMN/MOV
             begin
                 ALUResult_i <= (Cmd == 4'b1111 && Op == 2'b00) ? ~S_wider[31:0] : S_wider[31:0];
                 V <= ( Src_A[31] ~^ Src_B[31] )  & ( Src_B[31] ^ S_wider[31] );          

@@ -51,6 +51,7 @@ module ARM(
     // RegFile signals
     //wire CLK ;
     wire WE3 ;
+    wire WE5 ;
     wire [3:0] A1 ;
     wire [3:0] A2 ;
     wire [3:0] A3 ;
@@ -110,7 +111,7 @@ module ARM(
     wire [1:0] ALUControl ;
     //wire [31:0] ALUResult ;
     wire [3:0] ALUFlags ;
-    wire [3:0] MCycleFlags ;
+    wire [1:0] MCycleFlags ;
     //wire [3:0] FinalFlags ;
     // ProgramCounter signals
     //wire CLK ;
@@ -141,7 +142,7 @@ module ARM(
     
     //Pre/Post index signal
     wire StartProcessorStall;
-    wire CycleCounter; //counter for stall processor
+    wire [1:0] CycleCounter; //counter for stall processor
     //wire DoneProcessorStall;
     wire ProcessorBusy;
     
@@ -162,7 +163,9 @@ module ARM(
     assign A3 = (Start == 1) ? Instr[19:16] : Instr[15:12]; //RdHi for SMULL/UMULL[19:16] (write port)
     //assign A4 = (Instr[27:26] == 2'b00 && Instr[25] == 1'b0) ? Instr[11:8] : 4'bx; 
     assign A4 = (Instr[27:26] == 2'b01) ? Instr[3:0] : Instr[11:8]; //register shifted register/register shifted immediate for MI(Rm)(read port)
-    assign A5 = (Start == 1 && (Instr[24:21] == 4'b0110 || Instr[24:21] == 4'b0100)) ? Instr[15:12] : 4'bx; //RdLo for SMULL/UMULL[15:12] (write port) //TODO
+    //assign A5 = (Start == 1 && (Instr[24:21] == 4'b0110 || Instr[24:21] == 4'b0100)) ? Instr[15:12] : 4'bx; //RdLo for SMULL/UMULL[15:12] (write port) //TODO
+    assign WE5 = (Start == 1 && (Instr[24:21] == 4'b0110 || Instr[24:21] == 4'b0100)) ? 1 : 0;
+    assign A5 = Instr[15:12];
     assign WD3 = Result;
     //assign WD4 = (Start == 1 && (Instr[24:21] == 4'b0110 || Instr[24:21] == 4'b0100)) ? Result2 : 32'bx;
     assign WD4 = Result2;
@@ -210,6 +213,7 @@ module ARM(
     RegFile RegFile1( 
                     CLK,
                     WE3,
+                    WE5,
                     A1,
                     A2,
                     A3,
