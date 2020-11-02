@@ -25,7 +25,6 @@ module StallProcessor(
         input RESET,
         input Start,
         output reg [1:0] CycleCounter,
-        //output reg Done
         output ProcessorBusy
     ); 
     assign ProcessorBusy = Start & ~CycleCounter;
@@ -33,15 +32,11 @@ module StallProcessor(
     always@(posedge CLK) begin       
         // reset
         if(~RESET) begin
-            if(Start && CycleCounter == 2'b00) begin // note: a mealy machine, since output depends on current state (IDLE) & input (Start)
-                //ProcessorBusy = 1'b1 ;
+            if(Start && CycleCounter == 2'b00) begin
                 CycleCounter <= CycleCounter + 1'b1;
-                //Done <= 1'b0;
             end
             else begin
-                //ProcessorBusy = 1'b0;
                 CycleCounter <= 1'b0;
-                //Done <= 1'b1;
             end
         end
     end      

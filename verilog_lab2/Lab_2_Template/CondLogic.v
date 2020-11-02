@@ -104,11 +104,6 @@ module CondLogic(
                 Z <= ALUFlags[2];
             end
         end
-//        else if(MCycleDone == 1'b1)
-//        begin
-//            N <= MCycleFlags[3];
-//            Z <= MCycleFlags[2];
-//        end
         else
         begin
             N <= N;
