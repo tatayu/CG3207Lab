@@ -45,7 +45,7 @@ module MCycle
         output reg [width-1:0] Result1, // LSW of Product / Quotient
         output reg [width-1:0] Result2, // MSW of Product / Remainder
         output reg Busy, // Set immediately when Start is set. Cleared when the Results become ready. This bit can be used to stall the processor while multi-cycle operations are on.
-        output reg [3:0] MCycleFlag,
+        output reg [1:0] MCycleFlag,
         output reg done
     );
     
@@ -142,7 +142,6 @@ module MCycle
                   temp_sum = {1'b0, temp_sum[2*width-1 : 1]} ; // S >> 1
               end
               
-              //if( (MCycleOp[0] & count == width-1) | (~MCycleOp[0] & count == 2*width-1) ) // last cycle?
               if(count == width-1) begin  
                     if(negation_flag == 1) begin
                         temp_sum = -temp_sum;
@@ -244,9 +243,8 @@ module MCycle
         
         Result2 <= temp_sum[2*width-1 : width] ; //remainder
         Result1 <= temp_sum[width-1 : 0] ; //quotient
-        MCycleFlag[3] <= temp_sum[width-1] ;
-        MCycleFlag[2] <= (temp_sum[width-1 : 0] == 0) ? 1 : 0;
-        MCycleFlag[1:0] <= 2'b00;
+        MCycleFlag[1] <= temp_sum[width-1] ;
+        MCycleFlag[0] <= (temp_sum[width-1 : 0] == 0) ? 1 : 0;
     end
     
         
